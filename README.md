@@ -1,4 +1,4 @@
-# Pip.WebUI Document Controls http://git.pipdevs.com/pip-webui/pip-webui-documents
+# Pip.WebUI Document Controls http://github.com/pip-webui/pip-webui-documents
 
 Web controls to upload and download documents
 
@@ -85,12 +85,12 @@ Change to your project's root directory.
 
 ```bash
 # To install only core services with dependencies.
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-lib.git
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-core.git
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-controls.git
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-rest.git
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-documents.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-lib.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-core.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-controls.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-rest.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-documents.git
 
 # To install the entire pip-webui library
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui.git
+npm install git+ssh://git@github.com:pip-core/pip-webui.git
 ```
