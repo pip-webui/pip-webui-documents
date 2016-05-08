@@ -1,0 +1,54 @@
+<!--
+@file Document list edit control content
+@copyright Digital Living Software Corp. 2014-2016
+-->
+<div pip-focusable>
+	<div class="pip-document-upload pointer md-primary "
+		 ng-class="{'pip-focusable' : !ngDisabled(), 'pip-item-error' : item.state == 'error'}"
+		 ng-keydown="onKeyDown($event, item)"
+		 tabindex="{{ ngDisabled() ? -1 : 0 }}"
+		 ng-repeat="item in control.items | filter: filterItem">
+
+		<div class="pip-default-icon"
+			 ng-class="{ 'pip-document-new': item.id == null }">
+			<md-icon pip-cancel-drag="true" class="md-primary" ng-if="item.state == 'original' || item.state == 'added'"
+					 md-svg-icon="icons:{{::documentList.icon}}">
+			</md-icon>
+			<md-icon pip-cancel-drag="true" class="md-warn" ng-if="item.state == 'error'"
+					 md-svg-icon="icons:{{::documentList.iconError}}">
+			</md-icon>
+		</div>
+
+		<div class="pip-document-title" pip-cancel-drag="true">
+			{{::item.name}}
+		</div>
+		<md-button ng-click="onDelete(item)"
+				   ng-disabled="ngDisabled() || control.uploading"
+				   tabindex="-1"
+				   ng-hide="ngDisabled()"
+				   class="md-icon-button" aria-label="DELETE">
+
+			<md-icon md-svg-icon="icons:cross" pip-cancel-drag="true"></md-icon>
+		</md-button>
+		<md-progress-linear ng-show="item.uploading" ng-value="item.progress"></md-progress-linear>
+	</div>
+	
+	<button class="pip-document-upload pip-document-drop "
+			ng-class="{'pip-focusable' : !ngDisabled()}"
+			ng-keydown="onKeyDown($event)" tabindex="0"
+			ng-file-drop ng-file-select ng-file-change="onSelect($files)"
+			ng-multiple="true"
+			ng-disabled="ngDisabled() || control.uploading"
+			aria-label="UPLOAD">
+
+		<div class="pip-default-icon">
+			<md-icon pip-cancel-drag="true" md-svg-icon="icons:{{::documentList.icon}}"></md-icon>
+		</div>
+		<div class="pip-default-text">
+			<span>
+				{{documentList.text | translate}}
+			</span>
+		</div>
+	</button>
+	<div class="clearfix"></div>
+</div>

@@ -1,0 +1,186 @@
+// @file CSS styles for document list control
+// @copyright Digital Living Software Corp. 2014-2016
+
+@document-side:  80px;
+
+.pip-documents-name {
+  width: 100%;
+  text-align: left;
+  padding: 0px;
+  font-size: 16px;
+  text-transform: none;
+  .flex-container();
+  .flex-direction-row();
+
+  &.md-button {
+    cursor: pointer;
+    width: 100%;
+    text-align: start;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 0px;
+    height: 48px !important;
+  }
+
+  .pip-documents-text {
+    vertical-align: middle;
+    .flex-var();
+    .text-overflow();
+  }
+}
+
+.pip-document-list {
+  .pip-icon {
+    margin-right: 26px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+}
+
+.pip-document-list-edit, 
+.pip-document-list {
+    display: inline-block;
+
+  width: 100%;
+  //.pip-default-icon md-icon {
+  //  width: @document-side - 16px;
+  //  height: @document-side - 16px;
+  //  vertical-align: middle;
+  //  color: #c9c9c9;
+  //}
+
+  //.pip-documents-container {
+  //  .pip-document-download {
+  //    .pip-default-icon md-icon {
+  //      margin-left: 8px;
+  //    }
+  //  }
+  //}
+
+  .pip-document-upload,
+    .pip-document-download {
+
+        &.pip-item-error {
+          border-color: rgb(255,82,82);
+          border-style: dashed;
+
+          .pip-default-icon {
+            opacity: 1;
+            md-icon {
+              opacity: 1;
+            }
+          }
+
+          .pip-document-title {
+            color: rgb(255,82,82);
+          }
+        }
+
+        display: block;
+        float: left;
+        margin: 0px 8px 8px 0px;
+        position: relative;
+        width: @document-side;
+        height: @document-side;
+        border-radius: @border-radius;
+        overflow: hidden;
+
+        .pip-document-new {
+            opacity: 0.54;
+        }
+
+        .pip-document-drop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            width: @document-side;
+            height: @document-side;
+            cursor: pointer;
+        }
+
+        md-progress-linear {
+            position: absolute;
+            bottom: 0px;
+            width: @document-side;
+        }
+
+        .md-button.md-icon-button {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            .circle(20px);
+            min-width: 20px !important;
+            min-height: 20px !important;
+            margin: 0px;
+            padding: 0px;
+            background-color: rgba(0, 0, 0, 0.25);
+
+            & > md-icon {
+              margin-top: -6px;
+              width: 16px !important;
+              height: 16px !important;
+              fill: white;
+            }
+
+            &:hover, &:focus, &:active {
+              background-color: rgba(0, 0, 0, 0.54)!important;
+            }
+        }
+
+        .pip-default-icon, .pip-default-text {
+            position: absolute;
+            display: block;
+            top: 0px;
+            left: 0px;
+            width: @document-side;
+            height: @document-side;
+            line-height: @document-side;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .pip-default-icon md-icon {
+            display: inline-block;
+            vertical-align: sub;
+            width: @document-side - 40px;
+            height: @document-side - 40px;
+            opacity: .54;
+        }
+
+        .pip-default-text span {
+            padding: 4px;
+            display: inline-block;
+            font-size: 10px;
+            font-weight: @font-weight-button;
+            line-height: 1.2em;
+            vertical-align: middle;
+            color: #3f3f3f;
+        }
+
+        .pip-document-title {
+            display: block;
+            position: absolute;
+            bottom: 8px;
+            left: 4px;
+            right: 4px;
+            font-size: 11px;
+            font-weight: @font-weight-button;
+            font-style: normal;
+            max-height: 2.2em;
+            min-height: 1.6em;
+            line-height: 1.2em;
+            vertical-align: middle;
+            letter-spacing: 0em;
+            white-space: normal;
+            text-align: center;
+            color: #3f3f3f;
+            overflow:      hidden;
+            text-overflow: ellipsis;
+            text-transform: none;
+        }
+    }
+}
+

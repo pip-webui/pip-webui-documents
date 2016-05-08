@@ -1,0 +1,37 @@
+<!--
+@file Document list control content
+@copyright Digital Living Software Corp. 2014-2016
+-->
+
+<md-button class="pip-documents-name"
+		   ng-class="{'lp24-flex rp16': pipDocumentIcon}"
+		   ng-click="onTitleClick($event); onResize()"
+		   aria-label="RESIZE">
+
+	<div class="layout-align-start-center layout-row w-stretch">
+		<md-icon md-svg-icon="icons:document" ng-class="{'pip-icon': pipDocumentIcon}" ng-if="pipDocumentIcon"></md-icon>
+		<span class="pip-documents-text">
+			{{documents.length}} {{::'DOCUMENTS_ATTACHED' | translate}}
+		</span>
+
+		<md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon>
+		<md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon>
+	</div>
+</md-button>
+<div pip-focused class="pip-documents-container bm8"  ng-class="{'lp24-flex rp24-flex': pipDocumentIcon}">
+	<md-button class="pip-document-download md-primary"
+			   ng-class="{'pip-focusable' : !ngDisabled()}"
+			   href="{{::documentUrl(document)}}"
+			   target="_blank"
+			   ng-disabled="ngDisabled() || document.error"
+			   ng-repeat="document in documents track by document.file_id"
+			   aria-label="DOCUMENT">
+
+		<div class="pip-default-icon">
+			<md-icon md-svg-icon="icons:{{::documentList.icon}}"></md-icon>
+		</div>
+		<div class="pip-document-title">
+			{{::document.file_name}}
+		</div>
+	</md-button>
+</div>

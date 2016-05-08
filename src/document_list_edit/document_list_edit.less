@@ -1,0 +1,66 @@
+// @file CSS styles for document list edit control
+// @copyright Digital Living Software Corp. 2014-2016
+
+.pip-document-list-edit {
+  .pip-document-upload.pip-document-drop {
+    border-style: dashed;
+    background-color: #f0f0f0;
+
+    .pip-default-icon md-icon {
+      display: inline-block;
+      vertical-align: middle;
+      width: @document-side - 10px;
+      height: @document-side - 10px;
+      opacity: .26;
+    }
+
+    //&:focus {
+    //  border: 1px solid @color-hue-bg;
+    //}
+  }
+
+  .pip-document-upload {
+    border: 1px solid #c9c9c9;
+    border-radius: @border-radius;
+    background-color: @color-content; // todo
+
+    //&:focus {
+    //  border: 1px solid @color-hue-bg;
+    //}
+  }
+
+  margin: 0px -8px -8px 0px;
+}
+
+
+.generate-document-focus (@name, @color) {
+  .@{name} {
+
+    .pip-document-list-edit {
+      .pip-document-upload {
+        &:focus {
+          border: 1px solid @color;
+        }
+      }
+    }
+
+    .pip-document-list-edit {
+      .pip-document-upload.pip-document-drop {
+        &:focus {
+          border: 1px solid @color;
+        }
+      }
+    }
+  }
+}
+
+
+.generate-document-focus(blue,                @color-blue-hue);
+.generate-document-focus(pink,                @color-pink-hue);
+.generate-document-focus(orange,              @color-orange-hue);
+.generate-document-focus(amber,               @color-amber-hue);
+.generate-document-focus(green,               @color-green-hue);
+.generate-document-focus(navy,                @color-navy-hue);
+.generate-document-focus(grey,                @color-grey-hue);
+.generate-document-focus(dark,                @color-dark-hue);
+.generate-document-focus(black,               @color-black-hue);
