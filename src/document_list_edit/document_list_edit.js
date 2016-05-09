@@ -218,13 +218,13 @@
 
                 $http['delete'](getItemIdUrl(item))
                 .success(function (data) {
-                    _.remove(control.items, 'pin', item.pin);
+                    _.remove(control.items, {pin: item.pin});
                     callback();
                 })
                 .error(function (data, status) {
                     // Todo: perform a better processing
                     if (data == null) {
-                        _.remove(control.items, 'pin', item.pin);
+                        _.remove(control.items, {pin: item.pin});
                     } else {
                         item.uploaded = false;
                         item.uploading = false;
@@ -338,7 +338,7 @@
 
             function onDelete(item) {
                 if (item.state == 'added' || item.state == 'copied' ) {
-                    _.remove($scope.control.items, 'pin', item.pin);
+                    _.remove($scope.control.items, {pin: item.pin});
                 } else {
                     item.state = 'deleted';
                 }
@@ -350,7 +350,7 @@
                 if (item) {
                     if ($event.keyCode == 46 || $event.keyCode == 8) {
                         if (item.state == 'added') {
-                            _.remove($scope.control.items, 'pin', item.pin);
+                            _.remove($scope.control.items, {pin: item.pin});
                         } else {
                             item.state = 'deleted';
                         }
