@@ -22,7 +22,7 @@
     );
 
     thisModule.config(function (pipTranslateProvider, $stateProvider, $urlRouterProvider, $mdIconProvider, $mdThemingProvider) {
-            $mdIconProvider.iconSet('icons', '../../node_modules/pip-webui-css/dist/images/icons.svg', 512);
+            $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);
 
 
             // String translations
