@@ -51,7 +51,7 @@
                 $stateProvider.state(contentItem.state, contentItem);
             }
 
-            $urlRouterProvider.otherwise('/activities');
+            $urlRouterProvider.otherwise('/documents');
 
         } 
     );
