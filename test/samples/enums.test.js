@@ -1,21 +1,21 @@
 'use strict';
 
-suite('pipEnums', function () {
+describe('pipEnums', function () {
     var pipEnums;
-    
-    setup(module('pipEnums'));
-    
-    setup(inject(function(_pipEnums_) {
-       pipEnums = _pipEnums_; 
-    }));
-        
-    test('SHARE_LEVEL', function (done) {
-        assert.isDefined(pipEnums.SHARE_LEVEL);
 
-        done();
+    beforeEach(module('pipRest.Enums'));
+
+    beforeEach(inject(function(_pipEnums_) {
+        pipEnums = _pipEnums_;
+    }));
+
+
+
+    it('SHARE_LEVEL', function () {
+        assert.isDefined(pipEnums.SHARE_LEVEL);
     });
 
-    test.only('GENDER', function (done) {
+    it('GENDER', function () {
         assert.isDefined(pipEnums.GENDER);
 
         assert.isDefined(pipEnums.GENDERS);
@@ -24,6 +24,5 @@ suite('pipEnums', function () {
         assert.include(pipEnums.GENDERS, 'female');
         assert.include(pipEnums.GENDERS, 'n/s');
 
-        done();
     });
 });
