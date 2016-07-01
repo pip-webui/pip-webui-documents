@@ -1,63 +1,60 @@
-<div ng-if="$party">
-	<md-card layout="column" flex>
-		<h2 class="m16">Document List</h2>
-		<md-card-content >
-			<div>
-				{{ documents }}
-			</div>
-			<h2>Collapsed</h2>
-			<pip-document-list pip-documents="documents"
-							   pip-rebind="true"
-							   pip-collapse="true"
-							   ng-disabled="documentListDisabled">
-			</pip-document-list>
+<md-toolbar class="pip-appbar-ext">
+</md-toolbar>
 
-			<pip-document-list pip-documents="documents"
-							   pip-document-icon="true"
-							   pip-rebind="true"
-							   pip-collapse="true"
-							   ng-disabled="documentListDisabled">
-			</pip-document-list>
-		</md-card-content>
+<pip-document>
+    <div ng-if="$party" class="pip-content-container m16">
 
-		<md-card-actions >
-			<md-button ng-click="documentListDisabled = !documentListDisabled">
-				<span ng-show="documentListDisabled">Enable</span>
-				<span ng-hide="documentListDisabled">Disable</span>
-			</md-button>
-			<md-button ng-click="documentListCollapsed = !documentListCollapsed">
-				<span ng-show="documentListCollapsed">Collapse</span>
-				<span ng-hide="documentListCollapsed">No Collapse</span>
-			</md-button>
-		</md-card-actions>
-	</md-card>
+        <h2>Document List</h2>
 
-	<md-card layout="column" flex>
-		<h2>Document List Edit</h2>
-		<md-card-content >
-			<div>
-				{{ documents }}
-			</div>
-			<br/>
-			<pip-document-list-edit pip-documents="documents"
-									pip-created="onDocumentListCreated($event)"
-									pip-default-text="Click here or drag files to upload"
-									ng-disabled="documentListEditDisabled">
-			</pip-document-list-edit>
-		</md-card-content>
+        <div>
+            {{ documents }}
+        </div>
+        <h3>Collapsed</h3>
+        <pip-document-list pip-documents="documents"
+                           pip-rebind="true"
+                           pip-collapse="true"
+                           ng-disabled="documentListDisabled">
+        </pip-document-list>
 
-		<md-card-actions >
-			<md-button ng-click="onSaveDocumentsClick()">Save</md-button>
-			<md-button ng-click="onResetDocumentsClick()">Reset</md-button>
-			<md-button ng-click="documentListEditDisabled = !documentListEditDisabled">
-				<span ng-show="documentListEditDisabled">Enable</span>
-				<span ng-hide="documentListEditDisabled">Disable</span>
-			</md-button>
-			<md-button ng-click="documentListEditCollapsed = !documentListEditCollapsed">
-				<span ng-show="documentListEditCollapsed">Collapse</span>
-				<span ng-hide="documentListEditCollapsed">No Collapse</span>
-			</md-button>
-		</md-card-actions>
-	</md-card>
-</div>
+        <pip-document-list pip-documents="documents"
+                           pip-document-icon="true"
+                           pip-rebind="true"
+                           pip-collapse="true"
+                           ng-disabled="documentListDisabled">
+        </pip-document-list>
+
+        <md-button ng-click="documentListDisabled = !documentListDisabled">
+            <span ng-show="documentListDisabled">Enable</span>
+            <span ng-hide="documentListDisabled">Disable</span>
+        </md-button>
+        <md-button ng-click="documentListCollapsed = !documentListCollapsed">
+            <span ng-show="documentListCollapsed">Collapse</span>
+            <span ng-hide="documentListCollapsed">No Collapse</span>
+        </md-button>
+
+        <h2>Document List Edit</h2>
+
+        <div>
+            {{ documents }}
+        </div>
+        <br/>
+        <pip-document-list-edit pip-documents="documents"
+                                pip-created="onDocumentListCreated($event)"
+                                pip-default-text="Click here or drag files to upload"
+                                ng-disabled="documentListEditDisabled">
+        </pip-document-list-edit>
+
+        <md-button ng-click="onSaveDocumentsClick()">Save</md-button>
+        <md-button ng-click="onResetDocumentsClick()">Reset</md-button>
+        <md-button ng-click="documentListEditDisabled = !documentListEditDisabled">
+            <span ng-show="documentListEditDisabled">Enable</span>
+            <span ng-hide="documentListEditDisabled">Disable</span>
+        </md-button>
+        <md-button ng-click="documentListEditCollapsed = !documentListEditCollapsed">
+            <span ng-show="documentListEditCollapsed">Collapse</span>
+            <span ng-hide="documentListEditCollapsed">No Collapse</span>
+        </md-button>
+
+    </div>
+</pip-document>
 

@@ -17,7 +17,7 @@
             // testing data modules (have some data for example)
             'pipWebuiTests',
             // Sample Application Modules
-            'appDocuments.Documents'
+            'appDocuments.Documents', 'pipSideNav', 'pipAppBar'
         ]
     );
 
