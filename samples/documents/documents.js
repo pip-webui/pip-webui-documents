@@ -5,7 +5,7 @@
 
     var thisModule = angular.module('appDocuments.Documents', []);
 
-    thisModule.controller('DocumentsController',
+    thisModule.controller('pipDocumentsController',
         function ($scope, pipAppBar) {
             $scope.documents = [
                 {
@@ -47,6 +47,8 @@
 
             pipAppBar.showTitleText('DOCUMENTS');
             pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.hideShadow();
         }
     );
 

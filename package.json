@@ -40,6 +40,9 @@
     "pip-webui-controls": "git+https://github.com/pip-webui/pip-webui-controls.git",
     "pip-webui-layouts": "git+https://github.com/pip-webui/pip-webui-layouts.git",
     "pip-webui-nav": "git+https://github.com/pip-webui/pip-webui-nav.git",
+    "pip-webui-entry": "git+https://github.com/pip-webui/pip-webui-entry.git",
+    "pip-webui-locations": "git+https://github.com/pip-webui/pip-webui-locations.git",
+    "pip-webui-pictures": "git+https://github.com/pip-webui/pip-webui-pictures.git",
     "gulp": "^3.9.1"
   }
 }
