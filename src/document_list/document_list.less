@@ -6,7 +6,7 @@
 .pip-documents-name {
   width: 100%;
   text-align: left;
-  padding: 0px;
+  padding: 0;
   font-size: 16px;
   text-transform: none;
   .flex-container();
@@ -16,9 +16,9 @@
     cursor: pointer;
     width: 100%;
     text-align: start;
-    padding-left: 0px;
-    padding-right: 0px;
-    margin: 0px;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
     height: 48px !important;
   }
 
@@ -32,13 +32,13 @@
 .pip-document-list {
   .pip-icon {
     margin-right: 26px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
 }
 
-.pip-document-list-edit, 
+.pip-document-list-edit,
 .pip-document-list {
     display: inline-block;
 
@@ -62,24 +62,25 @@
     .pip-document-download {
 
         &.pip-item-error {
-          border-color: rgb(255,82,82);
+          border-color: rgb(255, 82, 82);
           border-style: dashed;
 
           .pip-default-icon {
             opacity: 1;
+
             md-icon {
               opacity: 1;
             }
           }
 
           .pip-document-title {
-            color: rgb(255,82,82);
+            color: rgb(255, 82, 82);
           }
         }
 
         display: block;
         float: left;
-        margin: 0px 8px 8px 0px;
+        margin: 0 8px 8px 0;
         position: relative;
         width: @document-side;
         height: @document-side;
@@ -87,7 +88,7 @@
         overflow: hidden;
 
         .pip-document-new {
-            opacity: 0.54;
+            opacity: .54;
         }
 
         .pip-document-drop {
@@ -103,7 +104,7 @@
 
         md-progress-linear {
             position: absolute;
-            bottom: 0px;
+            bottom: 0;
             width: @document-side;
         }
 
@@ -114,9 +115,9 @@
             .circle(20px);
             min-width: 20px !important;
             min-height: 20px !important;
-            margin: 0px;
-            padding: 0px;
-            background-color: rgba(0, 0, 0, 0.25);
+            margin: 0;
+            padding: 0;
+            background-color: rgba(0, 0, 0, .25);
 
             & > md-icon {
               margin-top: -6px;
@@ -125,16 +126,19 @@
               fill: white;
             }
 
-            &:hover, &:focus, &:active {
-              background-color: rgba(0, 0, 0, 0.54)!important;
+            &:hover,
+            &:focus,
+            &:active {
+              background-color: rgba(0, 0, 0, .54)!important;
             }
         }
 
-        .pip-default-icon, .pip-default-text {
+        .pip-default-icon,
+        .pip-default-text {
             position: absolute;
             display: block;
-            top: 0px;
-            left: 0px;
+            top: 0;
+            left: 0;
             width: @document-side;
             height: @document-side;
             line-height: @document-side;
@@ -173,14 +177,13 @@
             min-height: 1.6em;
             line-height: 1.2em;
             vertical-align: middle;
-            letter-spacing: 0em;
+            letter-spacing: 0;
             white-space: normal;
             text-align: center;
             color: #3f3f3f;
-            overflow:      hidden;
+            overflow: hidden;
             text-overflow: ellipsis;
             text-transform: none;
         }
     }
 }
-
