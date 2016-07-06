@@ -43,14 +43,11 @@
 </head>
 
 <body ng-app="appDocuments" ng-controller="pipSampleController" layout="column">
-<pip-main >
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>Documents</h2>
-        </div>
-    </md-toolbar>
+<pip-main class="pip-main">
+    <pip-appbar>
+    </pip-appbar>
 
-    <pip-main-body>
+    <pip-main-body class="pip-main-body">
         <md-toolbar class="pip-appbar-ext"></md-toolbar>
         <pip-document width="900" class="pip-no-border pip-document">
             <div class="pip-menu-container pip-border-no-top">
