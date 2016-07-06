@@ -14,16 +14,6 @@
         function ($mdThemingProvider, $stateProvider, $urlRouterProvider, pipAuthStateProvider, pipTranslateProvider,
                   pipRestProvider, pipSideNavProvider, pipAppBarProvider, pipEntryProvider, $mdIconProvider) {
 
-            var content = [
-                    {title: 'Document List',
-                        state: 'documents',
-                        url: '/documents',
-                        controller: 'pipDocumentsController',
-                        templateUrl: 'documents/documents.html'
-                    }
-                ],
-                contentItem, i;
-
             $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);
 
             pipAppBarProvider.globalSecondaryActions([
@@ -46,22 +36,14 @@
                 COLLAPSED: 'Раcкрытый',
                 DOCUMENT_LIST_EDIT: 'Редактирования списка документов'
             });
+            //
+            // for (i = 0; i < content.length; i++) {
+            //     contentItem = content[i];
+            //     $stateProvider.state(contentItem.state, contentItem);
+            // }
 
-            for (i = 0; i < content.length; i++) {
-                contentItem = content[i];
-                $stateProvider.state(contentItem.state, contentItem);
-            }
-
-            pipAuthStateProvider.unauthorizedState('signin');
-            pipAuthStateProvider.authorizedState('documents');
-
-            $urlRouterProvider.otherwise(function ($injector, $location) {
-                if ($location.$$path === '') {
-                    return '/signin';
-                }
-
-                return '/documents';
-            });
+            pipAuthStateProvider.unauthorizedState('list');
+            pipAuthStateProvider.authorizedState('list');
 
             // Configure REST API
             pipRestProvider.serverUrl('http://alpha.pipservices.net');

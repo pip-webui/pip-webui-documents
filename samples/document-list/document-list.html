@@ -1,0 +1,41 @@
+
+<h2 class="text-title tm0 bm24">{{ 'DOCUMENT_LIST' | translate }}</h2>
+
+<p class="text-body1">
+    {{ documents }}
+</p>
+<h3 class="text-subhead2">{{ 'COLLAPSED' | translate }}</h3>
+
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-document-list</strong> pip-documents="documents"
+                               pip-rebind="true"
+                               pip-collapse="true"
+                               ng-disabled="documentListDisabled"&gt;
+            &lt;/<strong>pip-document-list</strong>&gt;
+
+            &lt;<strong>pip-document-list</strong> pip-documents="documents"
+                            pip-document-icon="true"
+                            pip-rebind="true"
+                            pip-collapse="true"
+                            ng-disabled="documentListDisabled"&gt;
+            &lt;/<strong>pip-document-list</strong>&gt;
+        </pre>
+
+<pip-document-list pip-documents="documents"
+                   pip-rebind="true"
+                   pip-collapse="true"
+                   ng-disabled="documentListDisabled">
+</pip-document-list>
+
+<pip-document-list pip-documents="documents"
+                   pip-document-icon="true"
+                   pip-rebind="true"
+                   pip-collapse="true"
+                   ng-disabled="documentListDisabled">
+</pip-document-list>
+
+<div>
+    <md-button class="lm0" ng-click="documentListDisabled = !documentListDisabled">
+        <span>{{documentListDisabled ? 'Enable': 'Disable'}}</span>
+    </md-button>
+</div>

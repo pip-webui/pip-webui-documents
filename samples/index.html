@@ -39,18 +39,48 @@
 
     <script src="config.js"></script>
     <script src="index.js"></script>
-    <script src="documents/documents.js"></script>
+    <script src="documents_controller.js"></script>
 </head>
 
 <body ng-app="appDocuments" ng-controller="pipSampleController" layout="column">
-<pip-main class="pip-main" ng-if="!$reset">
-    <pip-appbar>
-    </pip-appbar>
+<pip-main >
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Documents</h2>
+        </div>
+    </md-toolbar>
 
-    <pip-sidenav>
-    </pip-sidenav>
+    <pip-main-body>
+        <md-toolbar class="pip-appbar-ext"></md-toolbar>
+        <pip-document width="900" class="pip-no-border pip-document">
+            <div class="pip-menu-container pip-border-no-top">
 
-    <pip-main-body ui-view ng-cloak layout="column" class="pip-main-body">
+                <div class="pip-menu">
+                    <md-list class="pip-menu pip-simple-list hide-xs"
+                             pip-selected="selected.pageIndex"
+                             pip-selected-watch="selected.navId"
+                             pip-select="onNavigationSelect($event.id)">
+                        <md-list-item class="pip-simple-list-item pip-selectable"
+                                      ng-repeat="page in pages track by page.state"
+                                      md-ink-ripple
+                                      pip-id="{{:: page.state }}">
+                            <p>{{:: page.title }}</p>
+                        </md-list-item>
+                    </md-list>
+
+                    <div class="pip-content-container">
+                        <pip-dropdown class="hide-gt-xs"
+                                      pip-actions="pages"
+                                      pip-dropdown-select="onDropdownSelect"
+                                      pip-active-index="selected.pageIndex"></pip-dropdown>
+                        <div class="pip-body layout-column flex hide-gt-xs" ui-view></div>
+                    </div>
+                </div>
+
+                <div class="pip-content-container p24 hide-xs" ui-view></div>
+            </div>
+
+        </pip-document>
     </pip-main-body>
 </pip-main>
 

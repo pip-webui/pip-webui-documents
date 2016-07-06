@@ -10,12 +10,29 @@
             'pipSampleConfig',
             // Modules from WebUI Framework
             'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipDocuments', 'pipSideNav', 'pipAppBar', 'pipEntry',
+            'pipRest.State',
             // testing data modules (have some data for example)
             'pipWebuiTests',
             // Sample Application Modules
             'appDocuments.Documents'
         ]
     );
+
+    thisModule.config(function (pipStateProvider, $urlRouterProvider) {
+        pipStateProvider
+            .state('document-list', {
+                url: '/list',
+                controller: 'pipDocumentsController',
+                templateUrl: 'document-list/document-list.html'
+            })
+            .state('document-list-edit', {
+                url: '/list-edit',
+                controller: 'pipDocumentsController',
+                templateUrl: 'document-list-edit/document-list-edit.html'
+            });
+
+        $urlRouterProvider.otherwise('/list');
+    });
 
     thisModule.controller('pipSampleController',
         function ($scope, $rootScope, $state, $mdSidenav, pipTranslate, pipRest, pipToasts, pipTestAccount,
@@ -29,6 +46,22 @@
             $scope.sampleAccount = pipTestAccount.getSamplerAccount();
 
             $scope.openConnection = openConnection;
+
+            $scope.onNavigationSelect = function (state) {
+                $state.go(state);
+            };
+
+            $scope.onDropdownSelect = function (state) {
+                $scope.onNavigationSelect(state.state);
+            };
+
+            $scope.pages = [{
+                state: 'document-list',
+                title: 'Document list'
+            }, {
+                state: 'document-list-edit',
+                title: 'Documnent list edit'
+            }];
 
             // Connect to server
             // openConnection();
@@ -55,7 +88,7 @@
                         pipTheme.setCurrentTheme($rootScope.$theme);
                         pipToasts.showNotification('Signed in as ' + user.name, ['ok']);
                     },
-                    function (/* error */) {
+                    function () {
                         $rootScope.$routing = false;
                         pipToasts.showError('Failed to signed in');
                     }
