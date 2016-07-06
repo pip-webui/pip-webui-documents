@@ -4,35 +4,31 @@
  * @todo
  * - Improve samples in sampler app
  */
- 
-/* global angular */
 
-(function () {
+(function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module("pipDocumentList", ['pipCore', 'pipRest', 'pipFocused', 'pipDocuments.Templates']);
+    var thisModule = angular.module('pipDocumentList', ['pipCore', 'pipRest', 'pipFocused', 'pipDocuments.Templates']);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            'DOCUMENTS_ATTACHED': 'document(s) attached',
-            'ERROR_DOCUMENTS_LOADED': 'Error: <%= error_number %> document(s) are not loaded'
+            DOCUMENTS_ATTACHED: 'document(s) attached',
+            ERROR_DOCUMENTS_LOADED: 'Error: <%= error_number %> document(s) are not loaded'
         });
         pipTranslateProvider.translations('ru', {
-            'DOCUMENTS_ATTACHED': 'документов добавлено',
-            'ERROR_DOCUMENTS_LOADED': 'Ошибка: <%= error_number %> документ(ов) не загружено'
+            DOCUMENTS_ATTACHED: 'документов добавлено',
+            ERROR_DOCUMENTS_LOADED: 'Ошибка: <%= error_number %> документ(ов) не загружено'
         });
     });
 
     thisModule.directive('pipDocumentList',
-        function ($parse, $rootScope, pipUtils, pipRest, $http, pipToasts, pipTranslate) {
+        function ($parse, $rootScope, pipUtils, pipRest, pipToasts, pipTranslate) {  // eslint-disable-line no-unused-vars
             return {
                 restrict: 'EA',
                 scope: true,
-                templateUrl:'document_list/document_list.html',
+                templateUrl: 'document_list/document_list.html',
                 link: function ($scope, $element, $attrs) {
-                    var documentsGetter = $parse($attrs.pipDocuments);
-
-                    var 
+                    var documentsGetter = $parse($attrs.pipDocuments),
                         $documentsContainer = $element.children('.pip-documents-container'),
                         $up = $element.find('.icon-up'),
                         $down = $element.find('.icon-down'),
@@ -41,11 +37,13 @@
                     $scope.documentList = {};
                     $scope.documentList.icon = 'document';
                     $scope.documents = documentsGetter($scope);
-                    if($attrs.pipDocumentIcon) {
+
+                    if ($attrs.pipDocumentIcon) {
                         $scope.pipDocumentIcon = true;
                     }
 
                     $scope.showDocuments = collapsable;
+
                     if (!collapsable) {
                         $up.hide();
                         $documentsContainer.hide();
@@ -60,7 +58,7 @@
 
                     // Also optimization to avoid watch if it is unnecessary
                     if (pipUtils.toBoolean($attrs.pipRebind)) {
-                        $scope.$watch(documentsGetter, function(newValue) {
+                        $scope.$watch(documentsGetter, function (newValue) {
                             if (differentDocumentList(newValue)) {
                                 $scope.documents = newValue;
                             }
@@ -73,32 +71,32 @@
                     // Add class
                     $element.addClass('pip-document-list');
 
-                    return ;
-
                     function differentDocumentList(newList) {
-                        if (!$scope.documents && newList) return true;
-                        if ($scope.documents && !newList) return true;
+                        var i, obj;
 
-                        if ($scope.documents.length != newList.length) return true;
+                        if (!$scope.documents && newList) { return true; }
+                        if ($scope.documents && !newList) { return true; }
+                        if ($scope.documents.length !== newList.length) { return true; }
 
-                        for (var i = 0; i < newList.length; i ++) {
-                            var obj = _.find($scope.documents, {file_id: newList[i].file_id});
-                            if (obj === undefined) return true;
+                        for (i = 0; i < newList.length; i++) {
+                            obj = _.find($scope.documents, {file_id: newList[i].file_id});
+
+                            if (obj === undefined) { return true; }
                         }
 
                         return false;
-                    };
+                    }
 
                     function onTitleClick(event) {
-                        if (event) event.stopPropagation();
+                        if (event) { event.stopPropagation(); }
 
-                        if ($attrs.disabled) return;
+                        if ($attrs.disabled) { return; }
 
                         $scope.showDocuments = !$scope.showDocuments;
                         $up[$scope.showDocuments ? 'show' : 'hide']();
                         $down[!$scope.showDocuments ? 'show' : 'hide']();
                         $documentsContainer[$scope.showDocuments ? 'show' : 'hide']();
-                    };
+                    }
 
                     function documentUrl(document) {
                         var
@@ -107,12 +105,11 @@
                             partyId = ($rootScope.$party || {}).id || userId;
 
                         return serverUrl + '/api/parties/' + partyId + '/files/' + document.file_id + '/content';
-                    };
-
+                    }
                 }
-            }
+            };
         }
     );
 
-})();
+})(window.angular, window._);
 

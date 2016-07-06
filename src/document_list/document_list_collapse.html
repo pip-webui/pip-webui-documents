@@ -2,25 +2,26 @@
 @file Document list control content (collapsable version)
 @copyright Digital Living Software Corp. 2014-2016
 -->
-<div class="pip-documents-name" ng-click="onTitleClick($event); onResize()">
-	<span class="pip-documents-text">
-		{{documents.length}} {{::'DOCUMENTS_ATTACHED' | translate}}
-	</span>
 
-	<md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon>
-	<md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon>
+<div class="pip-documents-name" ng-click="onTitleClick($event); onResize()">
+    <span class="pip-documents-text">
+        {{documents.length}} {{::'DOCUMENTS_ATTACHED' | translate}}
+    </span>
+
+    <md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon>
+    <md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon>
 </div>
 <div pip-focused class="pip-documents-container bm8">
-	<md-button class="pip-document-download pip-focusable md-primary"
-			   href="{{::document.url}}"
-			   target="_blank"
-			   ng-repeat="document in documents track by document.file_id"
-			   aria-label="DOCUMENT">
-		<div class="pip-default-icon">
-			<md-icon md-svg-icon="icons:{{::icon}}"></md-icon>
-		</div>
-		<div class="pip-document-title">
-			{{::document.file_name}}
-		</div>
-	</md-button>
+    <md-button class="pip-document-download pip-focusable md-primary"
+               href="{{::document.url}}"
+               target="_blank"
+               ng-repeat="document in documents track by document.file_id"
+               aria-label="DOCUMENT">
+        <div class="pip-default-icon">
+            <md-icon md-svg-icon="icons:{{::icon}}"></md-icon>
+        </div>
+        <div class="pip-document-title">
+            {{::document.file_name}}
+        </div>
+    </md-button>
 </div>

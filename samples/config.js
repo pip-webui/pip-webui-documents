@@ -23,7 +23,7 @@
                     }
                 ],
                 contentItem, i;
-            
+
             $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);
 
             pipAppBarProvider.globalSecondaryActions([
@@ -32,19 +32,19 @@
 
             // String translations
             pipTranslateProvider.translations('en', {
-                'DOCUMENTS': 'Documents',
-                'SIGNOUT': 'Sign out',
-                'DOCUMENT_LIST': 'Document List',
-                'COLLAPSED': 'Collapsed',
-                'DOCUMENT_LIST_EDIT': 'Document List Edit'
+                DOCUMENTS: 'Documents',
+                SIGNOUT: 'Sign out',
+                DOCUMENT_LIST: 'Document List',
+                COLLAPSED: 'Collapsed',
+                DOCUMENT_LIST_EDIT: 'Document List Edit'
             });
 
             pipTranslateProvider.translations('ru', {
-                'DOCUMENTS': 'Документы',
-                'SIGNOUT': 'Выйти',
-                'DOCUMENT_LIST': 'Список документов',
-                'COLLAPSED': 'Раcкрытый',
-                'DOCUMENT_LIST_EDIT': 'Редактирования списка документов'
+                DOCUMENTS: 'Документы',
+                SIGNOUT: 'Выйти',
+                DOCUMENT_LIST: 'Список документов',
+                COLLAPSED: 'Раcкрытый',
+                DOCUMENT_LIST_EDIT: 'Редактирования списка документов'
             });
 
             for (i = 0; i < content.length; i++) {

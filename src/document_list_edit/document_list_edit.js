@@ -6,27 +6,25 @@
  * - Add add/remove/hover animations
  */
 
-/* global angular */
-
-(function () {
+(function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module("pipDocumentListEdit", 
+    var thisModule = angular.module('pipDocumentListEdit',
         ['ui.event', 'angularFileUpload', 'pipCore', 'pipFocused', 'pipRest', 'pipDocuments.Templates']);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            'DOCUMENT_LIST_EDIT_TEXT':'Click here to add a document',
-            'ERROR_TRANSACTION_IN_PROGRESS': 'Transaction is in progress. Please, wait until it\'s finished or abort'
+            DOCUMENT_LIST_EDIT_TEXT: 'Click here to add a document',
+            ERROR_TRANSACTION_IN_PROGRESS: 'Transaction is in progress. Please, wait until it\'s finished or abort'
         });
         pipTranslateProvider.translations('ru', {
-            'DOCUMENT_LIST_EDIT_TEXT': 'Нажмите сюда, чтобы добавить документ',
-            'ERROR_TRANSACTION_IN_PROGRESS': 'Транзакция еще не завершена. Подождите окончания или прервите её'
+            DOCUMENT_LIST_EDIT_TEXT: 'Нажмите сюда, чтобы добавить документ',
+            ERROR_TRANSACTION_IN_PROGRESS: 'Транзакция еще не завершена. Подождите окончания или прервите её'
         });
     });
 
     thisModule.directive('pipDocumentListEdit',
-        function() {
+        function () {
             return {
                 restrict: 'EA',
                 scope: {
@@ -36,16 +34,17 @@
                     pipCreated: '&',
                     pipChanged: '&'
                 },
-                templateUrl: 'document_list_edit/document_list_edit.html', 
+                templateUrl: 'document_list_edit/document_list_edit.html',
                 controller: 'pipDocumentListEditController'
             };
         }
     );
 
     thisModule.controller('pipDocumentListEditController',
-        function($scope, $rootScope, $element, $attrs, $parse, $http, $upload, $timeout, pipRest, pipUtils) {
+        function ($scope, $rootScope, $element, $attrs, $parse, $http, $upload, $timeout, pipRest, pipUtils) {
             var
-                $control = $element.children('.pip-picture-drop');
+                $control = $element.children('.pip-picture-drop'),
+                itemPin = 0;
 
             $scope.documentList = {};
             $scope.documentList.text = $attrs.pipDefaultText || 'DOCUMENT_LIST_EDIT_TEXT';
@@ -53,8 +52,6 @@
             $scope.documentList.iconError = 'warn-circle';
             $scope.documentStartState = pipUtils.toBoolean($scope.pipAddedDocument) ? 'copied' : 'original';
             $scope.cancelDrag = pipUtils.toBoolean($attrs.pipCanselDrag) === true;
-
-            var itemPin = 0;
 
             $scope.control = {
                 uploading: 0,
@@ -84,24 +81,24 @@
                     // Todo: Optimize change tracking
                     return $scope.pipDocuments;
                 },
-                function(newValue) {
+                function (newValue) {
                     if (!_.isEqual(newValue, $scope.pipDocuments)) {
                         $scope.control.reset();
                     }
                 }
             );
 
-            return ;
-
             function getItems() {
                 var
                     documents = $scope.pipDocuments,
-                    items = [];
+                    items = [],
+                    i;
 
-                if (documents == null || documents.length == 0)
+                if (documents === null || documents.length === 0) {
                     return items;
+                }
 
-                for (var i = 0; i < documents.length; i++) {
+                for (i = 0; i < documents.length; i++) {
                     items.push({
                         pin: itemPin++,
                         id: documents[i].file_id,
@@ -110,20 +107,24 @@
                         uploaded: false,
                         progress: 0,
                         file: null,
-                        state: $scope.documentStartState //'original'
+                        state: $scope.documentStartState // 'original'
                     });
                 }
 
                 return items;
-            };
+            }
 
             function setItems() {
-                // Clean the array
-                if ($scope.pipDocuments && $scope.pipDocuments.length > 0)
-                    $scope.pipDocuments.splice(0, $scope.pipDocuments.length);
+                var item, i;
 
-                for (var i = 0; i < $scope.control.items.length; i++) {
-                    var item = $scope.control.items[i];
+                // Clean the array
+                if ($scope.pipDocuments && $scope.pipDocuments.length > 0) {
+                    $scope.pipDocuments.splice(0, $scope.pipDocuments.length);
+                }
+
+                for (i = 0; i < $scope.control.items.length; i++) {
+                    item = $scope.control.items[i];
+
                     if (item.id) {
                         $scope.pipDocuments.push({
                             file_id: item.id,
@@ -131,12 +132,12 @@
                         });
                     }
                 }
-            };
+            }
 
             function resetDocument() {
                 $scope.control.uploading = 0;
                 $scope.control.items = getItems();
-            };
+            }
 
             function getItemIdUrl(item) {
                 var
@@ -144,28 +145,26 @@
                     partyId = $rootScope.$party ? $rootScope.$party.id : pipRest.userId();
 
                 return serverUrl + '/api/parties/' + partyId + '/files/' + item.id;
-            };
+            }
 
             function addItemUrl(item) {
-                var 
+                var
                     serverUrl = pipRest.serverUrl(),
                     partyId = $rootScope.$party ? $rootScope.$party.id : pipRest.userId();
 
-                return serverUrl + '/api/parties/' + partyId + '/files?name=' + item.file.name
-            };
+                return serverUrl + '/api/parties/' + partyId + '/files?name=' + item.file.name;
+            }
 
             function addItem(item, callback) {
-                var 
-                    control = $scope.control,
-                    file = item.file;
+                var
+                    file = item.file,
+                    fileReader = new FileReader();
 
                 // Avoid double transactions
-                if (item.uploading || item.file == null || item.state != 'added') 
-                    return;
+                if (item.uploading || item.file === null || item.state !== 'added') { return; }
 
-                var fileReader = new FileReader();
                 fileReader.onload = function (e) {
-                    if (item.uploading) return;
+                    if (item.uploading) { return; }
 
                     item.uploading = true;
 
@@ -186,7 +185,7 @@
                             item.state = 'original';
                             callback();
                         },
-                        function (error) {
+                        function () {
                             item.uploaded = false;
                             item.uploading = false;
                             item.progress = 0;
@@ -201,8 +200,8 @@
                     );
                 };
 
-                fileReader.readAsArrayBuffer(file);  
-            };
+                fileReader.readAsArrayBuffer(file);
+            }
 
             function deleteItem(item, callback) {
                 var control = $scope.control;
@@ -213,15 +212,14 @@
                     item.upload = null;
                 }
 
-                if (item.state != 'deleted') 
-                    return;
+                if (item.state !== 'deleted') { return; }
 
                 $http['delete'](getItemIdUrl(item))
-                .success(function (data) {
+                .success(function () {
                     _.remove(control.items, {pin: item.pin});
                     callback();
                 })
-                .error(function (data, status) {
+                .error(function (data) {
                     // Todo: perform a better processing
                     if (data == null) {
                         _.remove(control.items, {pin: item.pin});
@@ -234,21 +232,27 @@
 
                     callback(data);
                 });
-            };
+            }
 
             function saveDocument(successCallback, errorCallback) {
-                var control = $scope.control;
+                var control = $scope.control,
+                    onItemCallback,
+                    item,
+                    i;
 
                 if (control.uploading) {
-                    if (errorCallback) errorCallback('ERROR_TRANSACTION_IN_PROGRESS');
+                    if (errorCallback) {
+                        errorCallback('ERROR_TRANSACTION_IN_PROGRESS');
+                    }
+
                     return;
                 }
 
                 control.error = null;
                 control.uploading = 0;
 
-                var onItemCallback = function(error) {
-                    // Storing only the first error 
+                onItemCallback = function (error) {
+                    // Storing only the first error
                     if (error && !control.error) {
                         control.error = error;
                     }
@@ -258,22 +262,27 @@
                     // Finished uploading
                     if (control.uploading == 0) {
                         if (control.error) {
-                            if (errorCallback) errorCallback(control.error);
-                            else console.error(control.error);
+                            if (errorCallback) {
+                                errorCallback(control.error);
+                            } else {
+                                console.error(control.error);   // eslint-disable-line no-console
+                            }
                         } else {
                             setItems();
-                            if (successCallback) successCallback();
+                            if (successCallback) {
+                                successCallback();
+                            }
                         }
                     }
-                }
+                };
 
-                for (var i = 0; i < control.items.length; i++) {
-                    var item = control.items[i];
+                for (i = 0; i < control.items.length; i++) {
+                    item = control.items[i];
 
-                    if (item.state == 'added') {
+                    if (item.state === 'added') {
                         control.uploading++;
                         addItem(item, onItemCallback);
-                    } else if (item.state == 'deleted') {
+                    } else if (item.state === 'deleted') {
                         control.uploading++;
                         deleteItem(item, onItemCallback);
                     }
@@ -281,18 +290,24 @@
 
                 // Nothing was uploaded
                 if (control.uploading == 0) {
-                    if (successCallback) successCallback();
+                    if (successCallback) {
+                        successCallback();
+                    }
                 }
-            };
+            }
 
             function onAbort() {
-                var control = $scope.control;
+                var control = $scope.control,
+                    item,
+                    i;
 
-                for (var i = 0; i < control.items.length; i++) {
-                    var item = control.items[i];
+                for (i = 0; i < control.items.length; i++) {
+                    item = control.items[i];
 
                     if (item.uploading) {
-                        if (item.upload) item.upload.abort();
+                        if (item.upload) {
+                            item.upload.abort();
+                        }
 
                         item.uploaded = false;
                         item.uploading = false;
@@ -303,23 +318,25 @@
 
                 // Abort transaction
                 control.uploading = 0;
-            };
+            }
 
             // Visualization functions
 
             function filterItem(item) {
-                return item.state != 'deleted';  
-            };
+                return item.state !== 'deleted';
+            }
 
             // Process user actions
             function onSelect($files) {
+                var file,
+                    i;
+
                 $control.focus();
 
-                if ($files == null || $files.length == 0)
-                    return;
+                if ($files == null || $files.length === 0) { return; }
 
-                for (var i = 0; i < $files.length; i++) {
-                    var file = $files[i];
+                for (i = 0; i < $files.length; i++) {
+                    file = $files[i];
 
                     $scope.control.items.push({
                         pin: itemPin++,
@@ -334,38 +351,36 @@
                 }
 
                 $scope.onChange();
-            };
+            }
 
             function onDelete(item) {
-                if (item.state == 'added' || item.state == 'copied' ) {
+                if (item.state === 'added' || item.state === 'copied') {
                     _.remove($scope.control.items, {pin: item.pin});
                 } else {
                     item.state = 'deleted';
                 }
 
                 $scope.onChange();
-            };
+            }
 
             function onKeyDown($event, item) {
                 if (item) {
-                    if ($event.keyCode == 46 || $event.keyCode == 8) {
-                        if (item.state == 'added') {
-                            _.remove($scope.control.items, {pin: item.pin});
+                    if ($event.keyCode === 46 || $event.keyCode === 8) {
+                        if (item.state === 'added') {
+                            _.remove($scope.control.items, { pin: item.pin });
                         } else {
                             item.state = 'deleted';
                         }
 
                         $scope.onChange();
-                    }                        
-                } else {
-                    if ($event.keyCode == 13 || $event.keyCode == 32) {
-                        // !! Avoid clash with $apply()
-                        setTimeout(function() {
-                            $control.trigger('click');
-                        }, 0);
-                    } 
+                    }
+                } else if ($event.keyCode === 13 || $event.keyCode === 32) {
+                    // !! Avoid clash with $apply()
+                    setTimeout(function () {
+                        $control.trigger('click');
+                    }, 0);
                 }
-            };
+            }
 
             // On change event
             function onChange() {
@@ -375,7 +390,7 @@
                         $control: $scope.control
                     });
                 }
-            };
+            }
 
             function executeCallback() {
                 // Execute callback
@@ -385,10 +400,10 @@
                         $control: $scope.control
                     });
                 }
-            };
+            }
 
         }
     );
 
-})();
+})(window.angular, window._);
 

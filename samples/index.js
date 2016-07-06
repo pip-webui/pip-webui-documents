@@ -1,6 +1,4 @@
-/* global angular */
-
-(function () {
+(function (angular, _) {
     'use strict';
 
     var thisModule = angular.module('appDocuments',
@@ -35,7 +33,6 @@
             // Connect to server
             // openConnection();
 
-            return;
             // ------------------------------------------------------------------------------------------------------
 
             function openConnection() {
@@ -68,4 +65,4 @@
         }
     );
 
-})();
+})(window.angular, window._);

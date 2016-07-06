@@ -1,6 +1,4 @@
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appDocuments.Documents', []);
@@ -24,7 +22,7 @@
             $scope.documentList = null;
 
             $scope.onDocumentListCreated = function ($event) {
-                console.log('Document list created');
+                console.log('Document list created');   // TODO [apidhirnyi] Move loggin on viewport
                 $scope.documentList = $event.sender;
             };
 
@@ -32,11 +30,11 @@
                 $scope.documentList.save(
                     // Success callback
                     function () {
-                        console.log('Document list saved');
+                        console.log('Document list saved'); // TODO [apidhirnyi] Move loggin on viewport
                     },
                     // Error callback
                     function (error) {
-                        console.error(error);
+                        console.error(error);   // eslint-disable-line no-console
                     }
                 );
             };
@@ -52,4 +50,4 @@
         }
     );
 
-})();
+})(window.angular);
