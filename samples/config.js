@@ -12,7 +12,7 @@
     // Configure application services before start
     thisModule.config(
         function ($mdThemingProvider, $stateProvider, $urlRouterProvider, pipAuthStateProvider, pipTranslateProvider,
-                  pipRestProvider, pipSideNavProvider, pipAppBarProvider, pipEntryProvider, $mdIconProvider) {
+                  pipRestProvider, pipSideNavProvider, pipAppBarProvider, pipStateProvider, $mdIconProvider) {
 
             $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);
 
@@ -36,14 +36,23 @@
                 COLLAPSED: 'Раcкрытый',
                 DOCUMENT_LIST_EDIT: 'Редактирования списка документов'
             });
-            //
-            // for (i = 0; i < content.length; i++) {
-            //     contentItem = content[i];
-            //     $stateProvider.state(contentItem.state, contentItem);
-            // }
 
-            pipAuthStateProvider.unauthorizedState('list');
-            pipAuthStateProvider.authorizedState('list');
+            pipStateProvider
+                .state('document-list', {
+                    url: '/list',
+                    controller: 'pipDocumentsController',
+                    templateUrl: 'document-list/document-list.html'
+                })
+                .state('document-list-edit', {
+                    url: '/list-edit',
+                    controller: 'pipDocumentsController',
+                    templateUrl: 'document-list-edit/document-list-edit.html'
+                });
+
+            $urlRouterProvider.otherwise('/list');
+
+            pipAuthStateProvider.unauthorizedState('signin');
+            pipAuthStateProvider.authorizedState('document-list');
 
             // Configure REST API
             pipRestProvider.serverUrl('http://alpha.pipservices.net');
@@ -51,7 +60,7 @@
             // Configure navigation menu
             pipSideNavProvider.sections([
                 {
-                    links: [{title: 'DOCUMENTS', url: '/documents'}]
+                    links: [{title: 'DOCUMENTS', url: '/list'}]
                 },
                 {
                     links: [{title: 'SIGNOUT', url: '/signout'}]

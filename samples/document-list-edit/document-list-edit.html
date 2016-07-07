@@ -4,14 +4,6 @@
     {{ documents }}
 </p>
 
-<pre class="text-body1 color-window-bg p16">
-                &lt;<strong>pip-document-list-edit</strong> pip-documents="documents"
-                                    pip-created="onDocumentListCreated($event)"
-                                    pip-default-text="Click here or drag files to upload"
-                                    ng-disabled="documentListEditDisabled"&gt;
-                &lt;/<strong>pip-document-list-edit</strong>&gt;
-            </pre>
-
 <pip-document-list-edit pip-documents="documents"
                         pip-created="onDocumentListCreated($event)"
                         pip-default-text="Click here or drag files to upload"
@@ -26,3 +18,13 @@
     </md-button>
 </div>
 </div>
+
+<h3 class="text-subhead2">{{ 'CODE' | translate }}:</h3>
+
+<pre class="text-body1 color-window-bg p16">
+                &lt;<strong>pip-document-list-edit</strong> pip-documents="documents"
+                                    pip-created="onDocumentListCreated($event)"
+                                    pip-default-text="Click here or drag files to upload"
+                                    ng-disabled="documentListEditDisabled"&gt;
+                &lt;/<strong>pip-document-list-edit</strong>&gt;
+            </pre>

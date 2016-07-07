@@ -18,34 +18,14 @@
         ]
     );
 
-    thisModule.config(function (pipStateProvider, $urlRouterProvider) {
-        pipStateProvider
-            .state('document-list', {
-                url: '/list',
-                controller: 'pipDocumentsController',
-                templateUrl: 'document-list/document-list.html'
-            })
-            .state('document-list-edit', {
-                url: '/list-edit',
-                controller: 'pipDocumentsController',
-                templateUrl: 'document-list-edit/document-list-edit.html'
-            });
-
-        $urlRouterProvider.otherwise('/list');
-    });
-
     thisModule.controller('pipSampleController',
         function ($scope, $rootScope, $state, $mdSidenav, pipTranslate, pipRest, pipToasts, pipTestAccount,
                   pipTestContent, pipSession, $mdTheming, localStorageService, pipTheme) {
 
-            $scope.languages = ['en', 'ru'];
-            $scope.themes = _.keys(_.omit($mdTheming.THEMES, 'default'));
             pipTheme.setCurrentTheme($rootScope.$theme);
 
             $scope.serverUrl = pipTestAccount.getServerUrl();
             $scope.sampleAccount = pipTestAccount.getSamplerAccount();
-
-            $scope.openConnection = openConnection;
 
             $scope.onNavigationSelect = function (state) {
                 $state.go(state);
@@ -63,37 +43,10 @@
                 title: 'Documnent list edit'
             }];
 
-            // Connect to server
-            // openConnection();
-
-            // ------------------------------------------------------------------------------------------------------
-
-            function openConnection() {
-                $rootScope.$routing = true;
-                pipSession.signin(
-                    {
-                        serverUrl: $scope.serverUrl,
-                        email: $scope.sampleAccount.email,
-                        password: $scope.sampleAccount.password
-                    },
-                    function (user) {
-                        user.owner = true;
-                        $rootScope.$party = {
-                            id: user.id,
-                            name: user.name
-                        };
-                        $rootScope.$user = user;
-                        $rootScope.$theme = user.theme;
-                        $rootScope.$routing = false;
-                        pipTheme.setCurrentTheme($rootScope.$theme);
-                        pipToasts.showNotification('Signed in as ' + user.name, ['ok']);
-                    },
-                    function () {
-                        $rootScope.$routing = false;
-                        pipToasts.showError('Failed to signed in');
-                    }
-                );
-            }
+            $scope.isEntryPage = function () {
+                return $state.current.name === 'signin' || $state.current.name === 'signup' ||
+                    $state.current.name === 'recover_password' || $state.current.name === 'post_signup';
+            };
 
         }
     );

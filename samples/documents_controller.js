@@ -22,7 +22,6 @@
             $scope.documentList = null;
 
             $scope.onDocumentListCreated = function ($event) {
-                console.log('Document list created');   // TODO [apidhirnyi] Move loggin on viewport
                 $scope.documentList = $event.sender;
             };
 
@@ -30,7 +29,7 @@
                 $scope.documentList.save(
                     // Success callback
                     function () {
-                        console.log('Document list saved'); // TODO [apidhirnyi] Move loggin on viewport
+                        //
                     },
                     // Error callback
                     function (error) {
