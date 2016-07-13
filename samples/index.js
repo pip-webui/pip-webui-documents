@@ -10,7 +10,7 @@
             'pipSampleConfig',
             // Modules from WebUI Framework
             'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipDocuments', 'pipSideNav', 'pipAppBar',
-            'pipEntry', 'pipRest.State', 'pipDropdown',
+            'pipEntry', 'pipRest.State', 'pipDropdown', 'pipLayout',
             // testing data modules (have some data for example)
             'pipWebuiTests',
             // Sample Application Modules
@@ -20,12 +20,17 @@
 
     thisModule.controller('pipSampleController',
         function ($scope, $rootScope, $state, $mdSidenav, pipTranslate, pipRest, pipToasts, pipTestAccount,
-                  pipTestContent, pipSession, $mdTheming, localStorageService, pipTheme) {
+                  pipTestContent, pipSession, $mdTheming, $timeout, pipTheme) {
 
             pipTheme.setCurrentTheme($rootScope.$theme);
 
             $scope.serverUrl = pipTestAccount.getServerUrl();
             $scope.sampleAccount = pipTestAccount.getSamplerAccount();
+
+            $scope.selected = {};
+            $timeout(function () {
+                $scope.selected.pageIndex = _.findIndex($scope.pages, {state: $state.current.name});
+            });
 
             $scope.onNavigationSelect = function (state) {
                 $state.go(state);

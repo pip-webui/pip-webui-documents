@@ -4,7 +4,7 @@
     var thisModule = angular.module('appDocuments.Documents', []);
 
     thisModule.controller('pipDocumentsController',
-        function ($scope, pipAppBar) {
+        function ($scope, pipAppBar, $rootScope) {
             $scope.documents = [
                 {
                     file_id: '56324968830c5b1b16bfaae5',

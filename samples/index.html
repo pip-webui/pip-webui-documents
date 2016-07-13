@@ -42,31 +42,30 @@
     <script src="documents_controller.js"></script>
 </head>
 
-<body ng-app="appDocuments" ng-controller="pipSampleController" layout="column">
+<body ng-app="appDocuments" ng-controller="pipSampleController" layout="column" ng-if="!$reset">
 <pip-main class="pip-main">
     <pip-appbar>
     </pip-appbar>
 
     <pip-sidenav></pip-sidenav>
 
-    <pip-main-body class="pip-main-body">
-        <md-toolbar class="pip-appbar-ext" ng-if="!isEntryPage()">
+    <pip-main-body ng-cloak layout="column" class="pip-main-body" ng-if="!isEntryPage()">
+        <md-toolbar class="pip-appbar-ext">
         </md-toolbar>
-        <pip-document width="900" class="pip-no-border pip-document" ng-if="!isEntryPage()">
-            <div class="pip-menu-container pip-border-no-top">
-                <div class="pip-menu">
-                    <md-list class="pip-menu pip-simple-list hide-xs"
-                             pip-selected="selected.pageIndex"
-                             pip-selected-watch="selected.navId"
-                             pip-select="onNavigationSelect($event.id)">
-                        <md-list-item class="pip-simple-list-item pip-selectable"
-                                      ng-repeat="page in pages track by page.state"
-                                      md-ink-ripple
-                                      pip-id="{{:: page.state }}">
-                            <p>{{:: page.title }}</p>
-                        </md-list-item>
-                    </md-list>
-                </div>
+        <pip-document class="pip-document">
+            <div class="pip-menu-container">
+                <md-list class="pip-menu pip-simple-list hide-xs"
+                         pip-selected="selected.pageIndex"
+                         pip-selected-watch="selected.navId"
+                         pip-select="onNavigationSelect($event.id)">
+                    <md-list-item class="pip-simple-list-item pip-selectable"
+                                  ng-repeat="page in pages track by page.state"
+                                  ng-class="{'selected': page.state == $state.name}"
+                                  md-ink-ripple
+                                  pip-id="{{:: page.state }}">
+                        <p>{{:: page.title }}</p>
+                    </md-list-item>
+                </md-list>
                 <div class="pip-content-container">
                     <pip-dropdown class="hide-gt-xs"
                                   pip-actions="pages"
@@ -76,8 +75,8 @@
                 </div>
             </div>
         </pip-document>
-        <pip-card class="pip-card" ui-view ng-if="isEntryPage()"></pip-card>
     </pip-main-body>
+    <pip-main-body ng-if="isEntryPage()" class="pip-main-body" ui-view></pip-main-body>
 </pip-main>
 
 </body>

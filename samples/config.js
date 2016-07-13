@@ -41,18 +41,20 @@
                 .state('document-list', {
                     url: '/list',
                     controller: 'pipDocumentsController',
-                    templateUrl: 'document-list/document-list.html'
+                    templateUrl: 'document_list_sample/document-list.html',
+                    auth: false
                 })
                 .state('document-list-edit', {
                     url: '/list-edit',
                     controller: 'pipDocumentsController',
-                    templateUrl: 'document-list-edit/document-list-edit.html'
+                    templateUrl: 'document_list_edit_sample/document-list-edit.html',
+                    auth: false
                 });
 
             $urlRouterProvider.otherwise('/list');
 
-            pipAuthStateProvider.unauthorizedState('signin');
-            pipAuthStateProvider.authorizedState('document-list');
+            // pipAuthStateProvider.unauthorizedState('document-list');
+            // pipAuthStateProvider.authorizedState('document-list');
 
             // Configure REST API
             pipRestProvider.serverUrl('http://alpha.pipservices.net');
@@ -61,10 +63,10 @@
             pipSideNavProvider.sections([
                 {
                     links: [{title: 'DOCUMENTS', url: '/list'}]
-                },
-                {
-                    links: [{title: 'SIGNOUT', url: '/signout'}]
                 }
+                /*{
+                    links: [{title: 'SIGNOUT', url: '/signout'}]
+                }*/
             ]);
         }
     );
