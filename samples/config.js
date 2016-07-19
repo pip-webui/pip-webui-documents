@@ -26,7 +26,8 @@
                 SIGNOUT: 'Sign out',
                 DOCUMENT_LIST: 'Document List',
                 COLLAPSED: 'Collapsed',
-                DOCUMENT_LIST_EDIT: 'Document List Edit'
+                DOCUMENT_LIST_EDIT: 'Document List Edit',
+                WITH_ICON: 'with icon'
             });
 
             pipTranslateProvider.translations('ru', {
@@ -34,7 +35,8 @@
                 SIGNOUT: 'Выйти',
                 DOCUMENT_LIST: 'Список документов',
                 COLLAPSED: 'Раcкрытый',
-                DOCUMENT_LIST_EDIT: 'Редактирования списка документов'
+                DOCUMENT_LIST_EDIT: 'Редактирования списка документов',
+                WITH_ICON: 'с иконкой'
             });
 
             pipStateProvider
