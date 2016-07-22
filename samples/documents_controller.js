@@ -4,7 +4,14 @@
     var thisModule = angular.module('appDocuments.Documents', []);
 
     thisModule.controller('pipDocumentsController',
-        function ($scope, pipAppBar, $rootScope) {
+        function ($scope, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
+
             $scope.documents = [
                 {
                     file_id: '56324968830c5b1b16bfaae5',

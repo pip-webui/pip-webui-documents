@@ -1,30 +1,26 @@
 <h2 class="text-title bm24 tm0">{{ 'DOCUMENT_LIST_EDIT' | translate }}</h2>
 
-<p class="text-body1">
-    {{ documents }}
-</p>
-
 <pip-document-list-edit pip-documents="documents"
                         pip-created="onDocumentListCreated($event)"
                         pip-default-text="Click here or drag files to upload"
                         ng-disabled="documentListEditDisabled">
 </pip-document-list-edit>
 <div>
-    <md-button class="lm0" ng-click="onSaveDocumentsClick()">Save</md-button>
-    <md-button ng-click="onResetDocumentsClick()">Reset</md-button>
-    <md-button ng-click="documentListEditDisabled = !documentListEditDisabled">
+    <md-button class="lm0 md-raised md-accent flat" ng-click="onSaveDocumentsClick()">Save</md-button>
+    <md-button class="md-raised md-accent flat" ng-click="onResetDocumentsClick()">Reset</md-button>
+    <md-button class="md-raised md-accent flat" ng-click="documentListEditDisabled = !documentListEditDisabled">
         <span ng-show="documentListEditDisabled">Enable</span>
         <span ng-hide="documentListEditDisabled">Disable</span>
     </md-button>
 </div>
 </div>
 
-<h3 class="text-subhead2">{{ 'CODE' | translate }}:</h3>
-
 <pre class="text-body1 color-window-bg p16">
-                &lt;<strong>pip-document-list-edit</strong> pip-documents="documents"
-                                    pip-created="onDocumentListCreated($event)"
-                                    pip-default-text="Click here or drag files to upload"
-                                    ng-disabled="documentListEditDisabled"&gt;
-                &lt;/<strong>pip-document-list-edit</strong>&gt;
-            </pre>
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<code class="language-markup">&lt;<strong>pip-document-list-edit</strong> pip-documents="documents"
+                    pip-created="onDocumentListCreated($event)"
+                    pip-default-text="Click here or drag files to upload"
+                    ng-disabled="documentListEditDisabled"&gt;
+&lt;/<strong>pip-document-list-edit</strong>&gt;
+</code>
+</pre>

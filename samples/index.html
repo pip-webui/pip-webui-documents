@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="../dist/pip-webui-documents.css"/>
     <link rel="stylesheet" href="styles.css"/>
 
+    <link rel="stylesheet" href="../node_modules/prismjs/themes/prism.css">
+    <link rel="stylesheet" href="../node_modules/pip-webui-tasks/node_modules/prismjs/themes/prism.css">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -34,6 +37,9 @@
     <script src="../lib/pip-webui-locations.js"></script>
     <script src="../lib/pip-webui-entry.js"></script>
     <script src="../lib/pip-webui-nav.js"></script>
+
+    <script src="../node_modules/prismjs/prism.js"></script>
+    <script src="../node_modules/pip-webui-tasks/node_modules/prismjs/prism.js"></script>
 
     <script src="../dist/pip-webui-documents.js"></script>
 
@@ -71,7 +77,7 @@
                                   pip-actions="pages"
                                   pip-dropdown-select="onDropdownSelect"
                                   pip-active-index="selected.pageIndex"></pip-dropdown>
-                    <div ui-view class="p24"></div>
+                    <div ui-view class="p24 scrolled"></div>
                 </div>
             </div>
         </pip-document>
