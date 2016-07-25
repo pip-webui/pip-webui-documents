@@ -48,14 +48,14 @@
     <script src="documents_controller.js"></script>
 </head>
 
-<body ng-app="appDocuments" ng-controller="pipSampleController" layout="column" ng-if="!$reset">
+<body ng-app="appDocuments" ng-controller="pipSampleController" class="layout-column" ng-if="!$reset">
 <pip-main class="pip-main">
     <pip-appbar>
     </pip-appbar>
 
     <pip-sidenav></pip-sidenav>
 
-    <pip-main-body ng-cloak layout="column" class="pip-main-body" ng-if="!isEntryPage()">
+    <pip-main-body ng-cloak class="pip-main-body layout-column" ng-if="!isEntryPage()">
         <md-toolbar class="pip-appbar-ext">
         </md-toolbar>
         <pip-document class="pip-document">
