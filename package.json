@@ -1,37 +1,36 @@
 {
-  "name": "pip-webui-documents",
-  "version": "1.0.0",
-  "author": "Digital Living Software Corp. <www.digitallivingsoftware.com>",
-  "description": "Pip.WebUI documents controls for Pip.Services platform",
-  "contributors": [
-    {
-      "name": "Sergey Seroukhov",
-      "email": "seroukhov@gmail.com"
+    "name": "pip-webui-documents",
+    "version": "1.0.0",
+    "author": "Digital Living Software Corp. <www.digitallivingsoftware.com>",
+    "description": "Pip.WebUI documents controls for Pip.Services platform",
+    "contributors": [
+        {
+            "name": "Sergey Seroukhov",
+            "email": "seroukhov@gmail.com"
+        },
+        {
+            "name": "Anastas Fonotov",
+            "email": "anastasf@gmail.com"
+        }
+    ],
+    "keywords": [
+        "pip",
+        "webui",
+        "documents",
+        "controls"
+    ],
+    "noAnalyze": true,
+    "license": "MIT",
+    "private": false,
+    "scripts": {
+        "build": "gulp build",
+        "clean": "gulp clean",
+        "lint": "gulp lint",
+        "samples": "gulp launch",
+        "test": "karma start"
     },
-    {
-      "name": "Anastas Fonotov",
-      "email": "anastasf@gmail.com"
+    "dependencies": {},
+    "devDependencies": {
+        "pip-webui-tasks": "git+https://github.com/pip-webui/pip-webui-tasks.git"
     }
-  ],
-  "keywords": [
-    "pip",
-    "webui",
-    "documents",
-    "controls"
-  ],
-  "noAnalyze": true,
-  "license": "Commercial",
-  "private": true,
-  "scripts": {
-    "build": "gulp build",
-    "clean": "gulp clean",
-    "lint": "gulp lint",
-    "samples": "gulp launch",
-    "test": "karma start"
-  },
-  "dependencies": {
-  },
-  "devDependencies": {
-    "pip-webui-tasks": "git+https://github.com/pip-webui/pip-webui-tasks.git"
-  }
 }
