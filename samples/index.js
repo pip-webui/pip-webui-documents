@@ -9,8 +9,8 @@
             // Application Configuration must go first
             'pipSampleConfig',
             // Modules from WebUI Framework
-            'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipDocuments', 'pipSideNav', 'pipAppBar',
-            'pipEntry', 'pipRest.State', 'pipDropdown', 'pipLayout',
+            'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipDocuments',
+            'pipRest.State', 'pipDropdown', 'pipLayout',
             // testing data modules (have some data for example)
             'pipWebuiTests',
             // Sample Application Modules
