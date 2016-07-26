@@ -45,7 +45,7 @@
 .pip-documents-name {
   width: 100%;
   text-align: left;
-  padding: 0px;
+  padding: 0;
   font-size: 16px;
   text-transform: none;
   display: -webkit-box;
@@ -63,9 +63,9 @@
   cursor: pointer;
   width: 100%;
   text-align: start;
-  padding-left: 0px;
-  padding-right: 0px;
-  margin: 0px;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0;
   height: 48px !important;
 }
 .pip-documents-name .pip-documents-text {
@@ -81,8 +81,8 @@
 }
 .pip-document-list .pip-icon {
   margin-right: 26px;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .pip-document-list-edit,
 .pip-document-list {
@@ -95,7 +95,7 @@
 .pip-document-list .pip-document-download {
   display: block;
   float: left;
-  margin: 0px 8px 8px 0px;
+  margin: 0 8px 8px 0;
   position: relative;
   width: 80px;
   height: 80px;
@@ -131,7 +131,7 @@
 .pip-document-list .pip-document-upload .pip-document-new,
 .pip-document-list-edit .pip-document-download .pip-document-new,
 .pip-document-list .pip-document-download .pip-document-new {
-  opacity: 0.54;
+  opacity: .54;
 }
 .pip-document-list-edit .pip-document-upload .pip-document-drop,
 .pip-document-list .pip-document-upload .pip-document-drop,
@@ -151,7 +151,7 @@
 .pip-document-list-edit .pip-document-download md-progress-linear,
 .pip-document-list .pip-document-download md-progress-linear {
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   width: 80px;
 }
 .pip-document-list-edit .pip-document-upload .md-button.md-icon-button,
@@ -167,8 +167,8 @@
   border-radius: 10px;
   min-width: 20px !important;
   min-height: 20px !important;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   background-color: rgba(0, 0, 0, 0.25);
 }
 .pip-document-list-edit .pip-document-upload .md-button.md-icon-button > md-icon,
@@ -204,8 +204,8 @@
 .pip-document-list .pip-document-download .pip-default-text {
   position: absolute;
   display: block;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
@@ -250,7 +250,7 @@
   min-height: 1.6em;
   line-height: 1.2em;
   vertical-align: middle;
-  letter-spacing: 0em;
+  letter-spacing: 0;
   white-space: normal;
   text-align: center;
   color: #3f3f3f;
@@ -259,7 +259,7 @@
   text-transform: none;
 }
 .pip-document-list-edit {
-  margin: 0px -8px -8px 0px;
+  margin: 0 -8px -8px 0;
 }
 .pip-document-list-edit .pip-document-upload.pip-document-drop {
   border-style: dashed;

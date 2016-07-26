@@ -3,19 +3,15 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
-    angular.module('pipDocuments', [        
+    angular.module('pipDocuments', [
         'pipDocumentList',
         'pipDocumentListEdit'
     ]);
-    
-})();
 
-
+})(window.angular);
 
 (function(module) {
 try {
@@ -31,36 +27,36 @@ module.run(['$templateCache', function($templateCache) {
     '-->\n' +
     '\n' +
     '<md-button class="pip-documents-name"\n' +
-    '		   ng-class="{\'lp24-flex rp16\': pipDocumentIcon}"\n' +
-    '		   ng-click="onTitleClick($event); onResize()"\n' +
-    '		   aria-label="RESIZE">\n' +
+    '           ng-class="{\'lp24-flex rp16\': pipDocumentIcon}"\n' +
+    '           ng-click="onTitleClick($event); onResize()"\n' +
+    '           aria-label="RESIZE">\n' +
     '\n' +
-    '	<div class="layout-align-start-center layout-row w-stretch">\n' +
-    '		<md-icon md-svg-icon="icons:document" ng-class="{\'pip-icon\': pipDocumentIcon}" ng-if="pipDocumentIcon"></md-icon>\n' +
-    '		<span class="pip-documents-text">\n' +
-    '			{{documents.length}} {{::\'DOCUMENTS_ATTACHED\' | translate}}\n' +
-    '		</span>\n' +
+    '    <div class="layout-align-start-center layout-row w-stretch">\n' +
+    '        <md-icon md-svg-icon="icons:document" ng-class="{\'pip-icon\': pipDocumentIcon}" ng-if="pipDocumentIcon"></md-icon>\n' +
+    '        <span class="pip-documents-text">\n' +
+    '            {{documents.length}} {{::\'DOCUMENTS_ATTACHED\' | translate}}\n' +
+    '        </span>\n' +
     '\n' +
-    '		<md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon>\n' +
-    '		<md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon>\n' +
-    '	</div>\n' +
+    '        <md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon>\n' +
+    '        <md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon>\n' +
+    '    </div>\n' +
     '</md-button>\n' +
     '<div pip-focused class="pip-documents-container bm8"  ng-class="{\'lp24-flex rp24-flex\': pipDocumentIcon}">\n' +
-    '	<md-button class="pip-document-download md-primary"\n' +
-    '			   ng-class="{\'pip-focusable\' : !ngDisabled()}"\n' +
-    '			   href="{{::documentUrl(document)}}"\n' +
-    '			   target="_blank"\n' +
-    '			   ng-disabled="ngDisabled() || document.error"\n' +
-    '			   ng-repeat="document in documents track by document.file_id"\n' +
-    '			   aria-label="DOCUMENT">\n' +
+    '    <md-button class="pip-document-download md-primary"\n' +
+    '               ng-class="{\'pip-focusable\' : !ngDisabled()}"\n' +
+    '               href="{{::documentUrl(document)}}"\n' +
+    '               target="_blank"\n' +
+    '               ng-disabled="ngDisabled() || document.error"\n' +
+    '               ng-repeat="document in documents track by document.file_id"\n' +
+    '               aria-label="DOCUMENT">\n' +
     '\n' +
-    '		<div class="pip-default-icon">\n' +
-    '			<md-icon md-svg-icon="icons:{{::documentList.icon}}"></md-icon>\n' +
-    '		</div>\n' +
-    '		<div class="pip-document-title">\n' +
-    '			{{::document.file_name}}\n' +
-    '		</div>\n' +
-    '	</md-button>\n' +
+    '        <div class="pip-default-icon">\n' +
+    '            <md-icon md-svg-icon="icons:{{::documentList.icon}}"></md-icon>\n' +
+    '        </div>\n' +
+    '        <div class="pip-document-title">\n' +
+    '            {{::document.file_name}}\n' +
+    '        </div>\n' +
+    '    </md-button>\n' +
     '</div>');
 }]);
 })();
@@ -77,27 +73,28 @@ module.run(['$templateCache', function($templateCache) {
     '@file Document list control content (collapsable version)\n' +
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
-    '<div class="pip-documents-name" ng-click="onTitleClick($event); onResize()">\n' +
-    '	<span class="pip-documents-text">\n' +
-    '		{{documents.length}} {{::\'DOCUMENTS_ATTACHED\' | translate}}\n' +
-    '	</span>\n' +
     '\n' +
-    '	<md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon>\n' +
-    '	<md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon>\n' +
+    '<div class="pip-documents-name" ng-click="onTitleClick($event); onResize()">\n' +
+    '    <span class="pip-documents-text">\n' +
+    '        {{documents.length}} {{::\'DOCUMENTS_ATTACHED\' | translate}}\n' +
+    '    </span>\n' +
+    '\n' +
+    '    <md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon>\n' +
+    '    <md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon>\n' +
     '</div>\n' +
     '<div pip-focused class="pip-documents-container bm8">\n' +
-    '	<md-button class="pip-document-download pip-focusable md-primary"\n' +
-    '			   href="{{::document.url}}"\n' +
-    '			   target="_blank"\n' +
-    '			   ng-repeat="document in documents track by document.file_id"\n' +
-    '			   aria-label="DOCUMENT">\n' +
-    '		<div class="pip-default-icon">\n' +
-    '			<md-icon md-svg-icon="icons:{{::icon}}"></md-icon>\n' +
-    '		</div>\n' +
-    '		<div class="pip-document-title">\n' +
-    '			{{::document.file_name}}\n' +
-    '		</div>\n' +
-    '	</md-button>\n' +
+    '    <md-button class="pip-document-download pip-focusable md-primary"\n' +
+    '               href="{{::document.url}}"\n' +
+    '               target="_blank"\n' +
+    '               ng-repeat="document in documents track by document.file_id"\n' +
+    '               aria-label="DOCUMENT">\n' +
+    '        <div class="pip-default-icon">\n' +
+    '            <md-icon md-svg-icon="icons:{{::icon}}"></md-icon>\n' +
+    '        </div>\n' +
+    '        <div class="pip-document-title">\n' +
+    '            {{::document.file_name}}\n' +
+    '        </div>\n' +
+    '    </md-button>\n' +
     '</div>\n' +
     '');
 }]);
@@ -175,35 +172,31 @@ module.run(['$templateCache', function($templateCache) {
  * @todo
  * - Improve samples in sampler app
  */
- 
-/* global angular */
 
-(function () {
+(function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module("pipDocumentList", ['pipCore', 'pipRest', 'pipFocused', 'pipDocuments.Templates']);
+    var thisModule = angular.module('pipDocumentList', ['pipCore', 'pipRest', 'pipFocused', 'pipDocuments.Templates']);
 
-    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            'DOCUMENTS_ATTACHED': 'document(s) attached',
-            'ERROR_DOCUMENTS_LOADED': 'Error: <%= error_number %> document(s) are not loaded'
+            DOCUMENTS_ATTACHED: 'document(s) attached',
+            ERROR_DOCUMENTS_LOADED: 'Error: <%= error_number %> document(s) are not loaded'
         });
         pipTranslateProvider.translations('ru', {
-            'DOCUMENTS_ATTACHED': 'документов добавлено',
-            'ERROR_DOCUMENTS_LOADED': 'Ошибка: <%= error_number %> документ(ов) не загружено'
+            DOCUMENTS_ATTACHED: 'документов добавлено',
+            ERROR_DOCUMENTS_LOADED: 'Ошибка: <%= error_number %> документ(ов) не загружено'
         });
     }]);
 
     thisModule.directive('pipDocumentList',
-        ['$parse', '$rootScope', 'pipUtils', 'pipRest', '$http', 'pipToasts', 'pipTranslate', function ($parse, $rootScope, pipUtils, pipRest, $http, pipToasts, pipTranslate) {
+        ['$parse', '$rootScope', 'pipUtils', 'pipRest', 'pipToasts', 'pipTranslate', function ($parse, $rootScope, pipUtils, pipRest, pipToasts, pipTranslate) {  // eslint-disable-line no-unused-vars
             return {
                 restrict: 'EA',
                 scope: true,
-                templateUrl:'document_list/document_list.html',
+                templateUrl: 'document_list/document_list.html',
                 link: function ($scope, $element, $attrs) {
-                    var documentsGetter = $parse($attrs.pipDocuments);
-
-                    var 
+                    var documentsGetter = $parse($attrs.pipDocuments),
                         $documentsContainer = $element.children('.pip-documents-container'),
                         $up = $element.find('.icon-up'),
                         $down = $element.find('.icon-down'),
@@ -212,11 +205,13 @@ module.run(['$templateCache', function($templateCache) {
                     $scope.documentList = {};
                     $scope.documentList.icon = 'document';
                     $scope.documents = documentsGetter($scope);
-                    if($attrs.pipDocumentIcon) {
+
+                    if ($attrs.pipDocumentIcon) {
                         $scope.pipDocumentIcon = true;
                     }
 
                     $scope.showDocuments = collapsable;
+
                     if (!collapsable) {
                         $up.hide();
                         $documentsContainer.hide();
@@ -231,7 +226,7 @@ module.run(['$templateCache', function($templateCache) {
 
                     // Also optimization to avoid watch if it is unnecessary
                     if (pipUtils.toBoolean($attrs.pipRebind)) {
-                        $scope.$watch(documentsGetter, function(newValue) {
+                        $scope.$watch(documentsGetter, function (newValue) {
                             if (differentDocumentList(newValue)) {
                                 $scope.documents = newValue;
                             }
@@ -244,32 +239,32 @@ module.run(['$templateCache', function($templateCache) {
                     // Add class
                     $element.addClass('pip-document-list');
 
-                    return ;
-
                     function differentDocumentList(newList) {
-                        if (!$scope.documents && newList) return true;
-                        if ($scope.documents && !newList) return true;
+                        var i, obj;
 
-                        if ($scope.documents.length != newList.length) return true;
+                        if (!$scope.documents && newList) { return true; }
+                        if ($scope.documents && !newList) { return true; }
+                        if ($scope.documents.length !== newList.length) { return true; }
 
-                        for (var i = 0; i < newList.length; i ++) {
-                            var obj = _.find($scope.documents, {file_id: newList[i].file_id});
-                            if (obj === undefined) return true;
+                        for (i = 0; i < newList.length; i++) {
+                            obj = _.find($scope.documents, {file_id: newList[i].file_id});
+
+                            if (obj === undefined) { return true; }
                         }
 
                         return false;
-                    };
+                    }
 
                     function onTitleClick(event) {
-                        if (event) event.stopPropagation();
+                        if (event) { event.stopPropagation(); }
 
-                        if ($attrs.disabled) return;
+                        if ($attrs.disabled) { return; }
 
                         $scope.showDocuments = !$scope.showDocuments;
                         $up[$scope.showDocuments ? 'show' : 'hide']();
                         $down[!$scope.showDocuments ? 'show' : 'hide']();
                         $documentsContainer[$scope.showDocuments ? 'show' : 'hide']();
-                    };
+                    }
 
                     function documentUrl(document) {
                         var
@@ -278,14 +273,13 @@ module.run(['$templateCache', function($templateCache) {
                             partyId = ($rootScope.$party || {}).id || userId;
 
                         return serverUrl + '/api/parties/' + partyId + '/files/' + document.file_id + '/content';
-                    };
-
+                    }
                 }
-            }
+            };
         }]
     );
 
-})();
+})(window.angular, window._);
 
 
 /**
@@ -296,27 +290,25 @@ module.run(['$templateCache', function($templateCache) {
  * - Add add/remove/hover animations
  */
 
-/* global angular */
-
-(function () {
+(function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module("pipDocumentListEdit", 
+    var thisModule = angular.module('pipDocumentListEdit',
         ['ui.event', 'angularFileUpload', 'pipCore', 'pipFocused', 'pipRest', 'pipDocuments.Templates']);
 
-    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            'DOCUMENT_LIST_EDIT_TEXT':'Click here to add a document',
-            'ERROR_TRANSACTION_IN_PROGRESS': 'Transaction is in progress. Please, wait until it\'s finished or abort'
+            DOCUMENT_LIST_EDIT_TEXT: 'Click here to add a document',
+            ERROR_TRANSACTION_IN_PROGRESS: 'Transaction is in progress. Please, wait until it\'s finished or abort'
         });
         pipTranslateProvider.translations('ru', {
-            'DOCUMENT_LIST_EDIT_TEXT': 'Нажмите сюда, чтобы добавить документ',
-            'ERROR_TRANSACTION_IN_PROGRESS': 'Транзакция еще не завершена. Подождите окончания или прервите её'
+            DOCUMENT_LIST_EDIT_TEXT: 'Нажмите сюда, чтобы добавить документ',
+            ERROR_TRANSACTION_IN_PROGRESS: 'Транзакция еще не завершена. Подождите окончания или прервите её'
         });
     }]);
 
     thisModule.directive('pipDocumentListEdit',
-        function() {
+        function () {
             return {
                 restrict: 'EA',
                 scope: {
@@ -326,16 +318,17 @@ module.run(['$templateCache', function($templateCache) {
                     pipCreated: '&',
                     pipChanged: '&'
                 },
-                templateUrl: 'document_list_edit/document_list_edit.html', 
+                templateUrl: 'document_list_edit/document_list_edit.html',
                 controller: 'pipDocumentListEditController'
             };
         }
     );
 
     thisModule.controller('pipDocumentListEditController',
-        ['$scope', '$rootScope', '$element', '$attrs', '$parse', '$http', '$upload', '$timeout', 'pipRest', 'pipUtils', function($scope, $rootScope, $element, $attrs, $parse, $http, $upload, $timeout, pipRest, pipUtils) {
+        ['$scope', '$rootScope', '$element', '$attrs', '$parse', '$http', '$upload', '$timeout', 'pipRest', 'pipUtils', function ($scope, $rootScope, $element, $attrs, $parse, $http, $upload, $timeout, pipRest, pipUtils) {
             var
-                $control = $element.children('.pip-picture-drop');
+                $control = $element.children('.pip-picture-drop'),
+                itemPin = 0;
 
             $scope.documentList = {};
             $scope.documentList.text = $attrs.pipDefaultText || 'DOCUMENT_LIST_EDIT_TEXT';
@@ -343,8 +336,6 @@ module.run(['$templateCache', function($templateCache) {
             $scope.documentList.iconError = 'warn-circle';
             $scope.documentStartState = pipUtils.toBoolean($scope.pipAddedDocument) ? 'copied' : 'original';
             $scope.cancelDrag = pipUtils.toBoolean($attrs.pipCanselDrag) === true;
-
-            var itemPin = 0;
 
             $scope.control = {
                 uploading: 0,
@@ -374,24 +365,24 @@ module.run(['$templateCache', function($templateCache) {
                     // Todo: Optimize change tracking
                     return $scope.pipDocuments;
                 },
-                function(newValue) {
+                function (newValue) {
                     if (!_.isEqual(newValue, $scope.pipDocuments)) {
                         $scope.control.reset();
                     }
                 }
             );
 
-            return ;
-
             function getItems() {
                 var
                     documents = $scope.pipDocuments,
-                    items = [];
+                    items = [],
+                    i;
 
-                if (documents == null || documents.length == 0)
+                if (documents === null || documents.length === 0) {
                     return items;
+                }
 
-                for (var i = 0; i < documents.length; i++) {
+                for (i = 0; i < documents.length; i++) {
                     items.push({
                         pin: itemPin++,
                         id: documents[i].file_id,
@@ -400,20 +391,24 @@ module.run(['$templateCache', function($templateCache) {
                         uploaded: false,
                         progress: 0,
                         file: null,
-                        state: $scope.documentStartState //'original'
+                        state: $scope.documentStartState // 'original'
                     });
                 }
 
                 return items;
-            };
+            }
 
             function setItems() {
-                // Clean the array
-                if ($scope.pipDocuments && $scope.pipDocuments.length > 0)
-                    $scope.pipDocuments.splice(0, $scope.pipDocuments.length);
+                var item, i;
 
-                for (var i = 0; i < $scope.control.items.length; i++) {
-                    var item = $scope.control.items[i];
+                // Clean the array
+                if ($scope.pipDocuments && $scope.pipDocuments.length > 0) {
+                    $scope.pipDocuments.splice(0, $scope.pipDocuments.length);
+                }
+
+                for (i = 0; i < $scope.control.items.length; i++) {
+                    item = $scope.control.items[i];
+
                     if (item.id) {
                         $scope.pipDocuments.push({
                             file_id: item.id,
@@ -421,12 +416,12 @@ module.run(['$templateCache', function($templateCache) {
                         });
                     }
                 }
-            };
+            }
 
             function resetDocument() {
                 $scope.control.uploading = 0;
                 $scope.control.items = getItems();
-            };
+            }
 
             function getItemIdUrl(item) {
                 var
@@ -434,28 +429,26 @@ module.run(['$templateCache', function($templateCache) {
                     partyId = $rootScope.$party ? $rootScope.$party.id : pipRest.userId();
 
                 return serverUrl + '/api/parties/' + partyId + '/files/' + item.id;
-            };
+            }
 
             function addItemUrl(item) {
-                var 
+                var
                     serverUrl = pipRest.serverUrl(),
                     partyId = $rootScope.$party ? $rootScope.$party.id : pipRest.userId();
 
-                return serverUrl + '/api/parties/' + partyId + '/files?name=' + item.file.name
-            };
+                return serverUrl + '/api/parties/' + partyId + '/files?name=' + item.file.name;
+            }
 
             function addItem(item, callback) {
-                var 
-                    control = $scope.control,
-                    file = item.file;
+                var
+                    file = item.file,
+                    fileReader = new FileReader();
 
                 // Avoid double transactions
-                if (item.uploading || item.file == null || item.state != 'added') 
-                    return;
+                if (item.uploading || item.file === null || item.state !== 'added') { return; }
 
-                var fileReader = new FileReader();
                 fileReader.onload = function (e) {
-                    if (item.uploading) return;
+                    if (item.uploading) { return; }
 
                     item.uploading = true;
 
@@ -476,7 +469,7 @@ module.run(['$templateCache', function($templateCache) {
                             item.state = 'original';
                             callback();
                         },
-                        function (error) {
+                        function () {
                             item.uploaded = false;
                             item.uploading = false;
                             item.progress = 0;
@@ -491,8 +484,8 @@ module.run(['$templateCache', function($templateCache) {
                     );
                 };
 
-                fileReader.readAsArrayBuffer(file);  
-            };
+                fileReader.readAsArrayBuffer(file);
+            }
 
             function deleteItem(item, callback) {
                 var control = $scope.control;
@@ -503,15 +496,14 @@ module.run(['$templateCache', function($templateCache) {
                     item.upload = null;
                 }
 
-                if (item.state != 'deleted') 
-                    return;
+                if (item.state !== 'deleted') { return; }
 
                 $http['delete'](getItemIdUrl(item))
-                .success(function (data) {
+                .success(function () {
                     _.remove(control.items, {pin: item.pin});
                     callback();
                 })
-                .error(function (data, status) {
+                .error(function (data) {
                     // Todo: perform a better processing
                     if (data == null) {
                         _.remove(control.items, {pin: item.pin});
@@ -524,21 +516,27 @@ module.run(['$templateCache', function($templateCache) {
 
                     callback(data);
                 });
-            };
+            }
 
             function saveDocument(successCallback, errorCallback) {
-                var control = $scope.control;
+                var control = $scope.control,
+                    onItemCallback,
+                    item,
+                    i;
 
                 if (control.uploading) {
-                    if (errorCallback) errorCallback('ERROR_TRANSACTION_IN_PROGRESS');
+                    if (errorCallback) {
+                        errorCallback('ERROR_TRANSACTION_IN_PROGRESS');
+                    }
+
                     return;
                 }
 
                 control.error = null;
                 control.uploading = 0;
 
-                var onItemCallback = function(error) {
-                    // Storing only the first error 
+                onItemCallback = function (error) {
+                    // Storing only the first error
                     if (error && !control.error) {
                         control.error = error;
                     }
@@ -548,22 +546,27 @@ module.run(['$templateCache', function($templateCache) {
                     // Finished uploading
                     if (control.uploading == 0) {
                         if (control.error) {
-                            if (errorCallback) errorCallback(control.error);
-                            else console.error(control.error);
+                            if (errorCallback) {
+                                errorCallback(control.error);
+                            } else {
+                                console.error(control.error);   // eslint-disable-line no-console
+                            }
                         } else {
                             setItems();
-                            if (successCallback) successCallback();
+                            if (successCallback) {
+                                successCallback();
+                            }
                         }
                     }
-                }
+                };
 
-                for (var i = 0; i < control.items.length; i++) {
-                    var item = control.items[i];
+                for (i = 0; i < control.items.length; i++) {
+                    item = control.items[i];
 
-                    if (item.state == 'added') {
+                    if (item.state === 'added') {
                         control.uploading++;
                         addItem(item, onItemCallback);
-                    } else if (item.state == 'deleted') {
+                    } else if (item.state === 'deleted') {
                         control.uploading++;
                         deleteItem(item, onItemCallback);
                     }
@@ -571,18 +574,24 @@ module.run(['$templateCache', function($templateCache) {
 
                 // Nothing was uploaded
                 if (control.uploading == 0) {
-                    if (successCallback) successCallback();
+                    if (successCallback) {
+                        successCallback();
+                    }
                 }
-            };
+            }
 
             function onAbort() {
-                var control = $scope.control;
+                var control = $scope.control,
+                    item,
+                    i;
 
-                for (var i = 0; i < control.items.length; i++) {
-                    var item = control.items[i];
+                for (i = 0; i < control.items.length; i++) {
+                    item = control.items[i];
 
                     if (item.uploading) {
-                        if (item.upload) item.upload.abort();
+                        if (item.upload) {
+                            item.upload.abort();
+                        }
 
                         item.uploaded = false;
                         item.uploading = false;
@@ -593,23 +602,25 @@ module.run(['$templateCache', function($templateCache) {
 
                 // Abort transaction
                 control.uploading = 0;
-            };
+            }
 
             // Visualization functions
 
             function filterItem(item) {
-                return item.state != 'deleted';  
-            };
+                return item.state !== 'deleted';
+            }
 
             // Process user actions
             function onSelect($files) {
+                var file,
+                    i;
+
                 $control.focus();
 
-                if ($files == null || $files.length == 0)
-                    return;
+                if ($files == null || $files.length === 0) { return; }
 
-                for (var i = 0; i < $files.length; i++) {
-                    var file = $files[i];
+                for (i = 0; i < $files.length; i++) {
+                    file = $files[i];
 
                     $scope.control.items.push({
                         pin: itemPin++,
@@ -624,38 +635,36 @@ module.run(['$templateCache', function($templateCache) {
                 }
 
                 $scope.onChange();
-            };
+            }
 
             function onDelete(item) {
-                if (item.state == 'added' || item.state == 'copied' ) {
+                if (item.state === 'added' || item.state === 'copied') {
                     _.remove($scope.control.items, {pin: item.pin});
                 } else {
                     item.state = 'deleted';
                 }
 
                 $scope.onChange();
-            };
+            }
 
             function onKeyDown($event, item) {
                 if (item) {
-                    if ($event.keyCode == 46 || $event.keyCode == 8) {
-                        if (item.state == 'added') {
-                            _.remove($scope.control.items, {pin: item.pin});
+                    if ($event.keyCode === 46 || $event.keyCode === 8) {
+                        if (item.state === 'added') {
+                            _.remove($scope.control.items, { pin: item.pin });
                         } else {
                             item.state = 'deleted';
                         }
 
                         $scope.onChange();
-                    }                        
-                } else {
-                    if ($event.keyCode == 13 || $event.keyCode == 32) {
-                        // !! Avoid clash with $apply()
-                        setTimeout(function() {
-                            $control.trigger('click');
-                        }, 0);
-                    } 
+                    }
+                } else if ($event.keyCode === 13 || $event.keyCode === 32) {
+                    // !! Avoid clash with $apply()
+                    setTimeout(function () {
+                        $control.trigger('click');
+                    }, 0);
                 }
-            };
+            }
 
             // On change event
             function onChange() {
@@ -665,7 +674,7 @@ module.run(['$templateCache', function($templateCache) {
                         $control: $scope.control
                     });
                 }
-            };
+            }
 
             function executeCallback() {
                 // Execute callback
@@ -675,12 +684,12 @@ module.run(['$templateCache', function($templateCache) {
                         $control: $scope.control
                     });
                 }
-            };
+            }
 
         }]
     );
 
-})();
+})(window.angular, window._);
 
 
 //# sourceMappingURL=pip-webui-documents.js.map
