@@ -35,9 +35,9 @@ module.exports = {
         ]
     },
     samples: {
-        port: 8110,
+        port: 8110
     },
     api: {
-        port: 8111,
+        port: 8111
     }
 };
