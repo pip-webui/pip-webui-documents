@@ -1,4 +1,4 @@
-# Pip.WebUI.Settings User's Guide
+# Pip.WebUI.Documents User's Guide
 
 ## <a name="contents"></a> Contents
 - [Installing](#install)
@@ -62,7 +62,7 @@ Todo: Document the directive attributes
 ### Usage
 Todo: Add code snippet with the directive and its attributes
 
-<img src="doc/images/img-doc-list-edit.png"/>
+<img src="images/img-doc-list-edit.png"/>
 
 ### Attributes
 Todo: Document the directive attributes
