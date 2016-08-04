@@ -48,25 +48,40 @@ angular.module('myApp',[..., 'pipDocuments']);
 **pip-documents-list** control shows a list of attached documents. By clicking on the document user is able to download it to his computer.
 
 ### Usage
-Todo: Add code snippet with the directive and its attributes
+```html
+<pip-document-list pip-documents="documents"
+                   pip-rebind="true"
+                   pip-collapse="true"
+                   ng-disabled="documentListDisabled">
+</pip-document-list>
+```
 
 <img src="images/img-doc-list.png"/>
 
 ### Attributes
-Todo: Document the directive attributes
-
+* **pip-documents** - array of documents
+* **pip-rebind** - updating pip-documents attribute
+* **pip-collapse** - possibility of collapse control
 
 ## <a name="documents_list_edit"></a> pip-documents-list-edit
 
 **pip-documents-list-edit** control allows editing of document attachments. Files can be added to the list or removed from it.
 
 ### Usage
-Todo: Add code snippet with the directive and its attributes
+```html
+<pip-document-list-edit pip-documents="documents"
+                        pip-created="onDocumentListCreated($event)"
+                        pip-default-text="Click here or drag files to upload"
+                        ng-disabled="documentListEditDisabled">
+</pip-document-list-edit>
+```
 
 <img src="images/img-doc-list-edit.png"/>
 
 ### Attributes
-Todo: Document the directive attributes
+* **pip-documents** - array of documents
+* **pip-created** - create document
+* **pip-default-text** - text in empty control
 
 
 ## <a name="issues"></a> Questions and bugs
