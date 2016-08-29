@@ -12,20 +12,17 @@
             'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipDocuments',
             'pipRest.State', 'pipDropdown', 'pipLayout',
             // testing data modules (have some data for example)
-            'pipWebuiTests',
+            // Error! Lost templates. Do not uncomment 'pipWebuiTests',
             // Sample Application Modules
             'appDocuments.Documents'
         ]
     );
 
     thisModule.controller('pipSampleController',
-        function ($scope, $rootScope, $state, $mdSidenav, pipTranslate, pipRest, pipToasts, pipTestAccount,
-                  pipTestContent, pipSession, $mdTheming, $timeout, pipTheme) {
+        function ($scope, $rootScope, $state, $mdSidenav, pipTranslate, pipRest, pipToasts,
+                  pipSession, $mdTheming, $timeout, pipTheme) {
 
             pipTheme.setCurrentTheme($rootScope.$theme);
-
-            $scope.serverUrl = pipTestAccount.getServerUrl();
-            $scope.sampleAccount = pipTestAccount.getSamplerAccount();
 
             $scope.selected = {};
             $timeout(function () {
