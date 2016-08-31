@@ -1,18 +1,3 @@
-/**
- * @file Registration of WebUI documents controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular) {
-    'use strict';
-
-    angular.module('pipDocuments', [
-        'pipDocumentList',
-        'pipDocumentListEdit'
-    ]);
-
-})(window.angular);
-
 (function(module) {
 try {
   module = angular.module('pipDocuments.Templates');
@@ -165,6 +150,21 @@ module.run(['$templateCache', function($templateCache) {
     '');
 }]);
 })();
+
+/**
+ * @file Registration of WebUI documents controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular) {
+    'use strict';
+
+    angular.module('pipDocuments', [
+        'pipDocumentList',
+        'pipDocumentListEdit'
+    ]);
+
+})(window.angular);
 
 /**
  * @file Document list control
