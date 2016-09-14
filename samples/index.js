@@ -9,7 +9,7 @@
             // Application Configuration must go first
             'pipSampleConfig',
             // Modules from WebUI Framework
-            'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipDocuments',
+            'pipCore', 'pipRest', 'pipDataConfig', 'pipDataDocument', 'pipBasicControls', 'pipDocuments',
             'pipRest.State', 'pipDropdown', 'pipLayout',
             // testing data modules (have some data for example)
             // Error! Lost templates. Do not uncomment 'pipWebuiTests',

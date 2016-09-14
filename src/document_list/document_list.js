@@ -8,7 +8,7 @@
 (function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module('pipDocumentList', ['pipCore', 'pipRest', 'pipFocused', 'pipDocuments.Templates']);
+    var thisModule = angular.module('pipDocumentList', ['pipCore', 'pipDataDocument', 'pipFocused', 'pipDocuments.Templates']);
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
@@ -22,7 +22,7 @@
     });
 
     thisModule.directive('pipDocumentList',
-        function ($parse, $rootScope, pipUtils, pipRest, pipToasts, pipTranslate) {  // eslint-disable-line no-unused-vars
+        function ($parse, $rootScope, pipUtils, pipDataDocument, pipToasts, pipTranslate) {  // eslint-disable-line no-unused-vars
             return {
                 restrict: 'EA',
                 scope: true,
@@ -66,7 +66,7 @@
                     }
 
                     $scope.onTitleClick = onTitleClick;
-                    $scope.documentUrl = documentUrl;
+                    $scope.documentUrl = documentContentUrl;
 
                     // Add class
                     $element.addClass('pip-document-list');
@@ -98,13 +98,8 @@
                         $documentsContainer[$scope.showDocuments ? 'show' : 'hide']();
                     }
 
-                    function documentUrl(document) {
-                        var
-                            serverUrl = pipRest.serverUrl(),
-                            userId = ($rootScope.$user || {}).id,
-                            partyId = ($rootScope.$party || {}).id || userId;
-
-                        return serverUrl + '/api/parties/' + partyId + '/files/' + document.file_id + '/content';
+                    function documentContentUrl(document) {
+                        return pipDataDocument.getDocumentContentUrl(document.file_id);
                     }
                 }
             };

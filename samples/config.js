@@ -6,13 +6,13 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipSideNav',
+    var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipDataConfig', 'pipSideNav',
         'pipAppBar']);
 
     // Configure application services before start
     thisModule.config(
         function ($mdThemingProvider, $stateProvider, $urlRouterProvider, pipAuthStateProvider, pipTranslateProvider,
-                  pipRestProvider, pipSideNavProvider, pipAppBarProvider, pipStateProvider, $mdIconProvider) {
+                  pipDataConfigProvider, pipSideNavProvider, pipAppBarProvider, pipStateProvider, $mdIconProvider) {
 
             var links = [
                     { title: 'Composite controls', href: '/pip-webui-composite/index.html'},
@@ -78,7 +78,7 @@
             // pipAuthStateProvider.authorizedState('document-list');
 
             // Configure REST API
-            pipRestProvider.serverUrl('http://alpha.pipservices.net');
+            pipDataConfigProvider.serverUrl('http://alpha.pipservices.net');
 
             // Configure navigation menu
             pipSideNavProvider.sections([

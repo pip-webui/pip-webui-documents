@@ -10,7 +10,7 @@
     'use strict';
 
     var thisModule = angular.module('pipDocumentListEdit',
-        ['ui.event', 'angularFileUpload', 'pipCore', 'pipFocused', 'pipRest', 'pipDocuments.Templates']);
+        ['ui.event', 'pipCore', 'pipFocused', 'pipDataDocument', 'pipDocuments.Templates']);
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
@@ -41,7 +41,7 @@
     );
 
     thisModule.controller('pipDocumentListEditController',
-        function ($scope, $rootScope, $element, $attrs, $parse, $http, $upload, $timeout, pipRest, pipUtils) {
+        function ($scope, $rootScope, $element, $attrs, $parse, $timeout, pipDataDocument, pipUtils) {
             var
                 $control = $element.children('.pip-picture-drop'),
                 itemPin = 0;
@@ -139,22 +139,6 @@
                 $scope.control.items = getItems();
             }
 
-            function getItemIdUrl(item) {
-                var
-                    serverUrl = pipRest.serverUrl(),
-                    partyId = $rootScope.$party ? $rootScope.$party.id : pipRest.userId();
-
-                return serverUrl + '/api/parties/' + partyId + '/files/' + item.id;
-            }
-
-            function addItemUrl(item) {
-                var
-                    serverUrl = pipRest.serverUrl(),
-                    partyId = $rootScope.$party ? $rootScope.$party.id : pipRest.userId();
-
-                return serverUrl + '/api/parties/' + partyId + '/files?name=' + item.file.name;
-            }
-
             function addItem(item, callback) {
                 var
                     file = item.file,
@@ -168,13 +152,12 @@
 
                     item.uploading = true;
 
-                    item.upload = $upload.http({
-                        url: addItemUrl(item),
-                        headers: { 'Content-Type': file.type },
-                        data: e.target.result
-                    })
-                    .then(
-                        function (response) {
+
+                    item.upload = pipDataDocument.createDocument({
+                            name: item.file.name,
+                            type: file.type,
+                            data: e.target.result
+                        }, function (response) {
                             item.id = response.data.id;
                             item.name = response.data.filename || item.name;
                             item.uploaded = true;
@@ -214,24 +197,24 @@
 
                 if (item.state !== 'deleted') { return; }
 
-                $http['delete'](getItemIdUrl(item))
-                .success(function () {
-                    _.remove(control.items, {pin: item.pin});
-                    callback();
-                })
-                .error(function (data) {
-                    // Todo: perform a better processing
-                    if (data == null) {
+                pipDataDocument.deleteDocument(item.id, 
+                    function () {
                         _.remove(control.items, {pin: item.pin});
-                    } else {
-                        item.uploaded = false;
-                        item.uploading = false;
-                        item.progress = 0;
-                        item.upload = null;
-                    }
+                        callback();
+                    }, 
+                    function (data) {
+                        // Todo: perform a better processing
+                        if (data == null) {
+                            _.remove(control.items, {pin: item.pin});
+                        } else {
+                            item.uploaded = false;
+                            item.uploading = false;
+                            item.progress = 0;
+                            item.upload = null;
+                        }
 
-                    callback(data);
-                });
+                        callback(data);
+                    });
             }
 
             function saveDocument(successCallback, errorCallback) {
