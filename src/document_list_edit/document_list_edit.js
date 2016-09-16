@@ -153,11 +153,13 @@
                     item.uploading = true;
 
 
-                    item.upload = pipDataDocument.createDocument({
+                    item.upload = pipDataDocument.createDocument(
+                        {
                             name: item.file.name,
                             type: file.type,
                             data: e.target.result
-                        }, function (response) {
+                        }, 
+                        function (response) {
                             item.id = response.data.id;
                             item.name = response.data.filename || item.name;
                             item.uploaded = true;
